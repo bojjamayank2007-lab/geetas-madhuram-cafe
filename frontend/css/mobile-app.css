@@ -1,0 +1,55 @@
+/* mobile-app.css — fixed mobile dock + floating WhatsApp button */
+
+/* Bottom action dock (Call / Order) — hidden until small screens */
+.dock {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 700;
+  display: none;
+  gap: 10px;
+  padding: 12px 5% calc(12px + env(safe-area-inset-bottom));
+  background: rgba(251, 246, 236, .94);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid var(--line);
+}
+.dock .btn { flex: 1; }
+
+@media (min-width: 1024px) {
+  .dock { display: none !important; }
+}
+
+@media (max-width: 1023px) {
+  .dock { display: flex; }
+  body { padding-bottom: 78px; }
+}
+
+/* Floating WhatsApp button */
+.whatsapp-float {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  z-index: 650;
+  width: 52px;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-pill);
+  background: #25D366;
+  color: #fff;
+  font-size: 1.4rem;
+  box-shadow: var(--shadow-lg);
+  transition: transform .28s var(--ease), box-shadow .28s var(--ease);
+}
+.whatsapp-float:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* On desktop the dock is gone, so the float sits lower */
+@media (min-width: 1024px) {
+  .whatsapp-float { bottom: 24px; }
+}

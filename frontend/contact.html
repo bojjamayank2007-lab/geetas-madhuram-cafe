@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Geeta's Madhuram Cafe</title>
+  <meta name="description" content="Visit us on Agra Road, beside Tirupati Hospital, Kaneri, Bhiwandi. Call 095619 79727." />
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/menu.css" />
+  <link rel="stylesheet" href="css/reviews.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/mobile-app.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html">
+        <strong>Geeta's Madhuram Cafe</strong>
+        <small>Kaneri · Bhiwandi</small>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="index.html#reviews">Reviews</a>
+        <a href="contact.html" class="is-active">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="nav-cart-btn" href="cart.html" aria-label="Cart, 0 items">
+          <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+          <span class="cart-badge">0</span>
+        </a>
+        <a class="nav-login" href="customer-login.html">Login</a>
+        <a class="btn btn-fill btn-sm nav-call" href="tel:+919561979727">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> Call Now
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Open menu"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap section">
+      <header class="section-head reveal">
+        <p class="eyebrow">Come say hello</p>
+        <h2 class="display-lg" style="margin-top: 8px;">Get in touch.</h2>
+        <p>On Agra Road, right beside Tirupati Hospital — open daily from 7 AM.</p>
+      </header>
+
+      <div class="contact-layout">
+
+        <!-- LEFT: info -->
+        <div class="reveal">
+          <div class="info-row">
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            <div>
+              <b>Address</b>
+              <p data-restaurant="address">H No 157/2, Agra Road, beside Tirupati Hospital,<br />Kaneri, Bhiwandi, Maharashtra 421302</p>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            <div>
+              <b>Phone</b>
+              <p><a data-restaurant="phone-link" href="tel:+919561979727">095619 79727</a></p>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+            <div>
+              <b>WhatsApp</b>
+              <p>
+                <a href="https://wa.me/919561979727?text=Hi%20Geeta%27s%20Madhuram%20Cafe" target="_blank" rel="noopener">
+                  Chat with us
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <i class="fa-regular fa-clock" aria-hidden="true"></i>
+            <div>
+              <b>Hours</b>
+              <p data-restaurant="hours">Open daily 7:00 AM – 10:00 PM</p>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>
+            <div>
+              <b>Plus code</b>
+              <p data-restaurant="plus-code">73R5+MC Bhiwandi, Maharashtra</p>
+            </div>
+          </div>
+
+          <a class="big-phone" data-restaurant="phone-link" href="tel:+919561979727">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i> 095619 79727
+          </a>
+
+          <div class="hero-cta" style="margin-top: 24px;">
+            <a class="btn btn-fill" href="https://www.google.com/maps/search/?api=1&query=Geeta%27s%20Madhuram%20Cafe%20Bhiwandi" target="_blank" rel="noopener">
+              <i class="fa-solid fa-diamond-turn-right" aria-hidden="true"></i> Get directions
+            </a>
+            <a class="btn btn-ghost" href="https://wa.me/919561979727" target="_blank" rel="noopener">
+              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp us
+            </a>
+          </div>
+        </div>
+
+        <!-- RIGHT: form -->
+        <div class="reveal">
+          <div class="contact-card">
+            <h3 class="cart-block-title">Send us a message</h3>
+            <p style="color: var(--muted); font-size: .9rem; margin-bottom: 18px;">
+              We'll reply within a few hours. For urgent orders, please call.
+            </p>
+
+            <form id="contact-form" novalidate>
+              <div class="form-grid">
+                <label class="field">
+                  <span>Name</span>
+                  <input type="text" name="name" required autocomplete="name" placeholder="Your full name" />
+                </label>
+
+                <label class="field">
+                  <span>Phone</span>
+                  <input type="tel" name="phone" required inputmode="numeric" pattern="[6-9][0-9]{9}" autocomplete="tel" placeholder="10-digit mobile" />
+                </label>
+
+                <label class="field" style="grid-column: 1 / -1;">
+                  <span>Subject</span>
+                  <select name="subject" required>
+                    <option value="">Choose one…</option>
+                    <option value="general">General enquiry</option>
+                    <option value="reservation">Table reservation</option>
+                    <option value="bulk">Bulk order</option>
+                    <option value="feedback">Feedback</option>
+                    <option value="other">Other</option>
+                  </select>
+                </label>
+
+                <label class="field" style="grid-column: 1 / -1;">
+                  <span>Message</span>
+                  <textarea name="message" rows="5" required maxlength="600" placeholder="Tell us what you need…"></textarea>
+                </label>
+              </div>
+
+              <button type="submit" class="btn btn-fill btn-block" style="margin-top: 18px;">
+                <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send message
+              </button>
+
+              <p class="summary-note" style="margin-top: 14px;">
+                <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                Your details stay private. We never share them.
+              </p>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Full-width map -->
+    <section class="wrap section" style="padding-top: 0;">
+      <div class="reveal">
+        <iframe class="map-frame" title="Geeta's Madhuram Cafe on Google Maps"
+                src="https://www.google.com/maps?q=Geeta%27s%20Madhuram%20Cafe%20Bhiwandi&output=embed"
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-mark" aria-hidden="true">Madhuram</div>
+
+      <div class="footer-grid">
+        <div>
+          <strong style="color: var(--ink); font-weight: 600;">Geeta's Madhuram Cafe</strong><br />
+          <span lang="hi">गीता'स मधुरम कैफे</span><br />
+          <span data-restaurant="address">Kaneri, Bhiwandi</span> · <a data-restaurant="phone-link" href="tel:+919561979727">095619 79727</a><br />
+          <span data-restaurant="hours">Open daily 7:00 AM – 10:00 PM</span>
+        </div>
+
+        <nav aria-label="Footer">
+          <a href="index.html#story">Story</a>
+          <a href="menu.html">Menu</a>
+          <a href="index.html#reviews">Reviews</a>
+          <a href="contact.html">Contact</a>
+          <a href="about.html">About</a>
+        </nav>
+      </div>
+
+      <p class="footer-copy">
+        © <span id="year">2026</span> Geeta's Madhuram Cafe. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Mobile dock -->
+  <div class="dock">
+    <a class="btn btn-ghost" href="tel:+919561979727">
+      <i class="fa-solid fa-phone" aria-hidden="true"></i> Call
+    </a>
+    <a class="btn btn-fill" href="https://www.swiggy.com/search?query=Geeta%27s%20Madhuram%20Cafe" target="_blank" rel="noopener">
+      Order on Swiggy
+    </a>
+  </div>
+
+  <!-- WhatsApp float -->
+  <a class="whatsapp-float"
+     href="https://wa.me/919561979727?text=Hi%20Geeta%27s%20Madhuram%20Cafe%2C%20I%27d%20like%20to%20know%20more"
+     target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <script src="js/api.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/navbar.js" defer></script>
+  <script src="js/restaurant.js" defer></script>
+  <script src="js/contact.js" defer></script>
+</body>
+</html>

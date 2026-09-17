@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log in — Geeta's Madhuram Cafe</title>
+  <meta name="description" content="Log in or create an account to order from Geeta's Madhuram Cafe." />
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/menu.css" />
+  <link rel="stylesheet" href="css/reviews.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/mobile-app.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html">
+        <strong>Geeta's Madhuram Cafe</strong>
+        <small>Kaneri · Bhiwandi</small>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="index.html#reviews">Reviews</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="nav-cart-btn" href="cart.html" aria-label="Cart, 0 items">
+          <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+          <span class="cart-badge">0</span>
+        </a>
+        <a class="nav-login is-active" href="customer-login.html">Login</a>
+        <a class="btn btn-fill btn-sm nav-call" href="tel:+919561979727">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> Call Now
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Open menu"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap section auth-section">
+
+      <div class="auth-card reveal">
+
+        <header class="auth-head">
+          <div class="auth-mark" aria-hidden="true">M</div>
+          <h1 class="display-md">Welcome back.</h1>
+          <p>Log in to order, or create an account in seconds.</p>
+        </header>
+
+        <!-- Tabs -->
+        <div class="tabs" role="tablist" aria-label="Login or register">
+          <button type="button" class="tab is-active" role="tab" aria-selected="true" data-tab="login" id="tab-login">
+            Login
+          </button>
+          <button type="button" class="tab" role="tab" aria-selected="false" data-tab="register" id="tab-register">
+            Register
+          </button>
+        </div>
+
+        <!-- LOGIN PANEL -->
+        <form id="login-form" class="auth-form" data-panel="login" novalidate>
+          <label class="field">
+            <span>Email</span>
+            <input type="email" name="email" required autocomplete="email" placeholder="you@example.com" />
+          </label>
+
+          <label class="field">
+            <span>Password</span>
+            <div class="field-password">
+              <input type="password" name="password" required minlength="6" autocomplete="current-password" placeholder="Your password" />
+              <button type="button" class="pw-toggle" aria-label="Show password">
+                <i class="fa-solid fa-eye" aria-hidden="true"></i>
+              </button>
+            </div>
+          </label>
+
+          <button type="submit" class="btn btn-fill btn-block">
+            <i class="fa-solid fa-arrow-right-to-bracket" aria-hidden="true"></i> Log in
+          </button>
+
+          <p class="auth-switch">
+            New here?
+            <button type="button" class="link-btn" data-switch-to="register">Create an account</button>
+          </p>
+        </form>
+
+        <!-- REGISTER PANEL -->
+        <form id="register-form" class="auth-form" data-panel="register" hidden novalidate>
+          <label class="field">
+            <span>Full name</span>
+            <input type="text" name="name" required autocomplete="name" placeholder="Your name" />
+          </label>
+
+          <label class="field">
+            <span>Email</span>
+            <input type="email" name="email" required autocomplete="email" placeholder="you@example.com" />
+          </label>
+
+          <label class="field">
+            <span>Password</span>
+            <div class="field-password">
+              <input type="password" name="password" required minlength="6" autocomplete="new-password" placeholder="At least 6 characters" />
+              <button type="button" class="pw-toggle" aria-label="Show password">
+                <i class="fa-solid fa-eye" aria-hidden="true"></i>
+              </button>
+            </div>
+          </label>
+
+          <label class="field">
+            <span>Confirm password</span>
+            <div class="field-password">
+              <input type="password" name="confirm" required minlength="6" autocomplete="new-password" placeholder="Repeat password" />
+              <button type="button" class="pw-toggle" aria-label="Show password">
+                <i class="fa-solid fa-eye" aria-hidden="true"></i>
+              </button>
+            </div>
+          </label>
+
+          <button type="submit" class="btn btn-fill btn-block">
+            <i class="fa-solid fa-user-plus" aria-hidden="true"></i> Create account
+          </button>
+
+          <p class="auth-switch">
+            Already have an account?
+            <button type="button" class="link-btn" data-switch-to="login">Log in</button>
+          </p>
+        </form>
+
+        <p class="auth-foot">
+          <i class="fa-solid fa-lock" aria-hidden="true"></i>
+          By continuing you agree to our terms. Your details stay private.
+        </p>
+
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-mark" aria-hidden="true">Madhuram</div>
+
+      <div class="footer-grid">
+        <div>
+          <strong style="color: var(--ink); font-weight: 600;">Geeta's Madhuram Cafe</strong><br />
+          <span lang="hi">गीता'स मधुरम कैफे</span><br />
+          Kaneri, Bhiwandi · <a href="tel:+919561979727">095619 79727</a>
+        </div>
+
+        <nav aria-label="Footer">
+          <a href="index.html#story">Story</a>
+          <a href="menu.html">Menu</a>
+          <a href="index.html#reviews">Reviews</a>
+          <a href="contact.html">Contact</a>
+          <a href="about.html">About</a>
+        </nav>
+      </div>
+
+      <p class="footer-copy">
+        © <span id="year">2026</span> Geeta's Madhuram Cafe. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <!-- WhatsApp float -->
+  <a class="whatsapp-float"
+     href="https://wa.me/919561979727?text=Hi%20Geeta%27s%20Madhuram%20Cafe%2C%20I%27d%20like%20to%20know%20more"
+     target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <script src="js/api.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/navbar.js" defer></script>
+  <script src="js/restaurant.js" defer></script>
+  <script src="js/customerAuth.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+/* responsive.css — global typography/spacing overrides only.
+   Component layout stays in its own CSS file (navbar.css, footer.css, …). */
+
+/* Larger screens */
+@media (min-width: 1024px) {
+  .section { padding: 112px 0; }
+  .section-sm { padding: 64px 0; }
+  .display-lg { font-size: clamp(2.4rem, 4.5vw, 4rem); }
+}
+
+/* Tablet and below */
+@media (max-width: 900px) {
+  .section { padding: 56px 0; }
+  .section-sm { padding: 40px 0; }
+}
+
+/* Phones */
+@media (max-width: 640px) {
+  .wrap { width: 92%; }
+  .btn { padding: 11px 18px; font-size: .84rem; }
+  .display-xl { font-size: clamp(2rem, 8vw, 2.6rem); }
+  .display-lg { font-size: clamp(1.7rem, 7vw, 2.3rem); }
+  .display-md { font-size: clamp(1.45rem, 5.5vw, 1.9rem); }
+  .eyebrow { font-size: .64rem; }
+}

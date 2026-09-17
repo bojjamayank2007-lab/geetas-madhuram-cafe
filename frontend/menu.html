@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu — Geeta's Madhuram Cafe</title>
+  <meta name="description" content="Authentic South Indian delights in Kaneri, Bhiwandi. Dosa, Pesarattu, Uttapam & more. Open daily 7 AM." />
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/menu.css" />
+  <link rel="stylesheet" href="css/reviews.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/mobile-app.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html">
+        <strong>Geeta's Madhuram Cafe</strong>
+        <small>Kaneri · Bhiwandi</small>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="menu.html" class="is-active">Menu</a>
+        <a href="about.html">About</a>
+        <a href="index.html#reviews">Reviews</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="nav-cart-btn" href="cart.html" aria-label="Cart, 0 items">
+          <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+          <span class="cart-badge">0</span>
+        </a>
+        <a class="nav-login" href="customer-login.html">Login</a>
+        <a class="btn btn-fill btn-sm nav-call" href="tel:+919561979727">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> Call Now
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Open menu"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Menu header -->
+    <section class="wrap section">
+      <header class="section-head reveal">
+        <p class="eyebrow">Kaneri · Bhiwandi</p>
+        <h2 class="display-lg" style="margin-top: 8px;">Our Menu</h2>
+        <p>Dosa, Pesarattu, Uttapam, snacks and Poori — cooked fresh every day, served with a smile.</p>
+      </header>
+
+      <!-- Filters -->
+      <div class="chips reveal" role="tablist" aria-label="Filter by category">
+        <button type="button" class="chip is-on" data-filter="all">All</button>
+        <button type="button" class="chip" data-filter="dosa">Benne Dosa</button>
+        <button type="button" class="chip" data-filter="pesarattu">Pesarattu</button>
+        <button type="button" class="chip" data-filter="uttapam">Uttapam</button>
+        <button type="button" class="chip" data-filter="snacks">Evening Snacks</button>
+        <button type="button" class="chip" data-filter="poori">Poori</button>
+      </div>
+
+      <div class="search-row reveal">
+        <input type="search" id="menu-search" class="menu-search" placeholder="Search dishes…" aria-label="Search dishes" />
+        <select id="menu-sort" class="menu-sort" aria-label="Sort dishes">
+          <option value="popular">Popular first</option>
+          <option value="price-asc">Price: low to high</option>
+          <option value="price-desc">Price: high to low</option>
+        </select>
+      </div>
+
+      <!-- Menu grid -->
+      <div class="menu-grid" id="menu-grid">
+        <!-- Live menu content is rendered by frontend/js/menu.js. The former sample cards are kept out of the DOM. -->
+        <!--
+
+        BREAKFAST
+        <article class="dish reveal" data-category="breakfast" data-price="40" data-popular="true" data-id="placeholder-poha">
+          <div class="dish-row">
+            <h3>Poha</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="price">₹40</span>
+          </div>
+          <p class="dish-desc">Flattened rice with peanuts, curry leaves & lemon</p>
+          <div class="dish-tags">
+            <span class="badge-veg" aria-label="Vegetarian"></span>
+            <span class="pill">Light</span><span class="pill">Morning</span>
+          </div>
+          <button class="btn btn-fill btn-sm dish-add" data-id="placeholder-poha" aria-label="Add Poha to cart">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </article>
+
+        <article class="dish reveal" data-category="breakfast" data-price="40" data-popular="false" data-id="placeholder-upma">
+          <div class="dish-row">
+            <h3>Upma</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="price">₹40</span>
+          </div>
+          <p class="dish-desc">Semolina tempered with ghee, mustard & green chilli</p>
+          <div class="dish-tags">
+            <span class="badge-veg" aria-label="Vegetarian"></span>
+            <span class="badge-spicy"><i class="fa-solid fa-pepper-hot" aria-hidden="true"></i> Mildly spicy</span>
+            <span class="pill">Morning</span>
+          </div>
+          <button class="btn btn-fill btn-sm dish-add" data-id="placeholder-upma" aria-label="Add Upma to cart">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </article>
+
+        <article class="dish reveal" data-category="breakfast" data-price="70" data-popular="true" data-id="placeholder-misal-pav">
+          <div class="dish-row">
+            <h3>Misal Pav</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="price">₹70</span>
+          </div>
+          <p class="dish-desc">Spicy sprouted moth bean curry with fresh pav</p>
+          <div class="dish-tags">
+            <span class="badge-veg" aria-label="Vegetarian"></span>
+            <span class="badge-spicy"><i class="fa-solid fa-pepper-hot" aria-hidden="true"></i> Very spicy</span>
+            <span class="pill">Maharashtrian</span>
+          </div>
+          <button class="btn btn-fill btn-sm dish-add" data-id="placeholder-misal-pav" aria-label="Add Misal Pav to cart">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </article>
+
+        <article class="dish reveal" data-category="breakfast" data-price="60" data-popular="false" data-id="placeholder-veg-sandwich">
+          <div class="dish-row">
+            <h3>Veg Sandwich</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="price">₹60</span>
+          </div>
+          <p class="dish-desc">Toasted sandwich with veggies & chutney</p>
+          <div class="dish-tags">
+            <span class="badge-veg" aria-label="Vegetarian"></span>
+            <span class="pill">Quick</span>
+          </div>
+          <button class="btn btn-fill btn-sm dish-add" data-id="placeholder-veg-sandwich" aria-label="Add Veg Sandwich to cart">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </article>
+
+        <article class="dish reveal" data-category="breakfast" data-price="15" data-popular="false" data-id="placeholder-masala-chai">
+          <div class="dish-row">
+            <h3>Masala Chai</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="price">₹15</span>
+          </div>
+          <p class="dish-desc">Strong Indian tea with ginger & cardamom</p>
+          <div class="dish-tags">
+            <span class="badge-veg" aria-label="Vegetarian"></span>
+            <span class="pill">Hot</span><span class="pill">Beverage</span>
+          </div>
+          <button class="btn btn-fill btn-sm dish-add" data-id="placeholder-masala-chai" aria-label="Add Masala Chai to cart">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </article>
+
+        MAIN
+        <article class="dish reveal" data-category="main" data-price="160" data-popular="true" data-id="placeholder-veg-thali">
+          <div class="dish-row">
+            <h3>Veg Thali</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="price">₹160</span>
+          </div>
+          <p class="dish-desc">Complete meal — 2 sabzi, dal, rice, roti, salad, sweet</p>
+          <div class="dish-tags">
+            <span class="badge-veg" aria-label="Vegetarian"></span>
+            <span class="pill">Thali</span><span class="pill">Meal</span>
+          </div>
+          <button class="btn btn-fill btn-sm dish-add" data-id="placeholder-veg-thali" aria-label="Add Veg Thali to cart">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </article>
+
+        <article class="dish reveal" data-category="main" data-price="180" data-popular="true" data-id="placeholder-paneer-butter-masala">
+          <div class="dish-row">
+            <h3>Paneer Butter Masala</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="price">₹180</span>
+          </div>
+          <p class="dish-desc">Cottage cheese in rich tomato-butter gravy</p>
+          <div class="dish-tags">
+            <span class="badge-veg" aria-label="Vegetarian"></span>
+            <span class="badge-spicy"><i class="fa-solid fa-pepper-hot" aria-hidden="true"></i> Mildly spicy</span>
+            <span class="pill">Paneer</span>
+          </div>
+          <button class="btn btn-fill btn-sm dish-add" data-id="placeholder-paneer-butter-masala" aria-label="Add Paneer Butter Masala to cart">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </article>
+
+        <article class="dish reveal" data-category="main" data-price="140" data-popular="false" data-id="placeholder-dal-tadka">
+          <div class="dish-row">
+            <h3>Dal Tadka</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="price">₹140</span>
+          </div>
+          <p class="dish-desc">Yellow lentils with ghee & cumin tempering</p>
+          <div class="dish-tags">
+            <span class="badge-veg" aria-label="Vegetarian"></span>
+            <span class="pill">Dal</span>
+          </div>
+          <button class="btn btn-fill btn-sm dish-add" data-id="placeholder-dal-tadka" aria-label="Add Dal Tadka to cart">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </article>
+
+        <article class="dish reveal" data-category="main" data-price="120" data-popular="false" data-id="placeholder-jeera-rice">
+          <div class="dish-row">
+            <h3>Jeera Rice</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="price">₹120</span>
+          </div>
+          <p class="dish-desc">Basmati rice tempered with cumin</p>
+          <div class="dish-tags">
+            <span class="badge-veg" aria-label="Vegetarian"></span>
+            <span class="pill">Rice</span>
+          </div>
+          <button class="btn btn-fill btn-sm dish-add" data-id="placeholder-jeera-rice" aria-label="Add Jeera Rice to cart">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </article>
+
+        <article class="dish reveal" data-category="main" data-price="20" data-popular="false" data-id="placeholder-roti">
+          <div class="dish-row">
+            <h3>Roti</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="price">₹20</span>
+          </div>
+          <p class="dish-desc">Whole wheat flatbread</p>
+          <div class="dish-tags">
+            <span class="badge-veg" aria-label="Vegetarian"></span>
+            <span class="pill">Bread</span>
+          </div>
+          <button class="btn btn-fill btn-sm dish-add" data-id="placeholder-roti" aria-label="Add Roti to cart">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </article>
+
+        <article class="dish reveal" data-category="main" data-price="30" data-popular="false" data-id="placeholder-butter-naan">
+          <div class="dish-row">
+            <h3>Butter Naan</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="price">₹30</span>
+          </div>
+          <p class="dish-desc">Soft leavened bread with butter</p>
+          <div class="dish-tags">
+            <span class="badge-veg" aria-label="Vegetarian"></span>
+            <span class="pill">Bread</span>
+          </div>
+          <button class="btn btn-fill btn-sm dish-add" data-id="placeholder-butter-naan" aria-label="Add Butter Naan to cart">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </article>
+
+        SNACKS
+        <article class="dish reveal" data-category="snacks" data-price="90" data-popular="true" data-id="placeholder-pav-bhaji">
+          <div class="dish-row">
+            <h3>Pav Bhaji</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="price">₹90</span>
+          </div>
+          <p class="dish-desc">Mashed vegetable curry with buttered pav</p>
+          <div class="dish-tags">
+            <span class="badge-veg" aria-label="Vegetarian"></span>
+            <span class="badge-spicy"><i class="fa-solid fa-pepper-hot" aria-hidden="true"></i> Spicy</span>
+            <span class="pill">Street food</span>
+          </div>
+          <button class="btn btn-fill btn-sm dish-add" data-id="placeholder-pav-bhaji" aria-label="Add Pav Bhaji to cart">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </article>
+
+        <article class="dish reveal" data-category="snacks" data-price="110" data-popular="false" data-id="placeholder-hakka-noodles">
+          <div class="dish-row">
+            <h3>Hakka Noodles</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="price">₹110</span>
+          </div>
+          <p class="dish-desc">Indo-Chinese stir-fried noodles with veggies</p>
+          <div class="dish-tags">
+            <span class="badge-veg" aria-label="Vegetarian"></span>
+            <span class="pill">Chinese</span>
+          </div>
+          <button class="btn btn-fill btn-sm dish-add" data-id="placeholder-hakka-noodles" aria-label="Add Hakka Noodles to cart">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </article>
+
+        <article class="dish reveal" data-category="snacks" data-price="120" data-popular="false" data-id="placeholder-veg-manchurian">
+          <div class="dish-row">
+            <h3>Veg Manchurian</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="price">₹120</span>
+          </div>
+          <p class="dish-desc">Crispy veg balls in spicy garlic sauce</p>
+          <div class="dish-tags">
+            <span class="badge-veg" aria-label="Vegetarian"></span>
+            <span class="badge-spicy"><i class="fa-solid fa-pepper-hot" aria-hidden="true"></i> Spicy</span>
+            <span class="pill">Chinese</span>
+          </div>
+          <button class="btn btn-fill btn-sm dish-add" data-id="placeholder-veg-manchurian" aria-label="Add Veg Manchurian to cart">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </article>
+
+        <article class="dish reveal" data-category="snacks" data-price="70" data-popular="false" data-id="placeholder-french-fries">
+          <div class="dish-row">
+            <h3>French Fries</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="price">₹70</span>
+          </div>
+          <p class="dish-desc">Golden crispy salted fries</p>
+          <div class="dish-tags">
+            <span class="badge-veg" aria-label="Vegetarian"></span>
+            <span class="pill">Quick</span>
+          </div>
+          <button class="btn btn-fill btn-sm dish-add" data-id="placeholder-french-fries" aria-label="Add French Fries to cart">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </article>
+
+        DRINKS
+        <article class="dish reveal" data-category="drinks" data-price="80" data-popular="true" data-id="placeholder-cold-coffee">
+          <div class="dish-row">
+            <h3>Cold Coffee</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="price">₹80</span>
+          </div>
+          <p class="dish-desc">Thick chilled coffee with ice cream</p>
+          <div class="dish-tags">
+            <span class="badge-veg" aria-label="Vegetarian"></span>
+            <span class="pill">Cold</span><span class="pill">Beverage</span>
+          </div>
+          <button class="btn btn-fill btn-sm dish-add" data-id="placeholder-cold-coffee" aria-label="Add Cold Coffee to cart">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </article>
+
+        <article class="dish reveal" data-category="drinks" data-price="70" data-popular="false" data-id="placeholder-sweet-lassi">
+          <div class="dish-row">
+            <h3>Sweet Lassi</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="price">₹70</span>
+          </div>
+          <p class="dish-desc">Fresh curd blended with sugar & cardamom</p>
+          <div class="dish-tags">
+            <span class="badge-veg" aria-label="Vegetarian"></span>
+            <span class="pill">Cold</span><span class="pill">Beverage</span>
+          </div>
+          <button class="btn btn-fill btn-sm dish-add" data-id="placeholder-sweet-lassi" aria-label="Add Sweet Lassi to cart">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </article>
+
+        <article class="dish reveal" data-category="drinks" data-price="60" data-popular="false" data-id="placeholder-fresh-lime-soda">
+          <div class="dish-row">
+            <h3>Fresh Lime Soda</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="price">₹60</span>
+          </div>
+          <p class="dish-desc">Sweet or salted — your choice</p>
+          <div class="dish-tags">
+            <span class="badge-veg" aria-label="Vegetarian"></span>
+            <span class="pill">Cold</span><span class="pill">Beverage</span>
+          </div>
+          <button class="btn btn-fill btn-sm dish-add" data-id="placeholder-fresh-lime-soda" aria-label="Add Fresh Lime Soda to cart">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </article>
+        -->
+      </div>
+
+      <p class="menu-note reveal">
+        <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+        Please note: prices are indicative. Call <a href="tel:+919561979727"><b>095619 79727</b></a> for today's specials and bulk orders.
+      </p>
+    </section>
+  </main>
+
+  <!-- Cart drawer -->
+  <div class="cart-backdrop" id="cart-backdrop" hidden></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-hidden="true" aria-label="Your cart">
+    <header class="cart-drawer-head">
+      <h2>Your Cart</h2>
+      <button type="button" class="cart-close" id="cart-close" aria-label="Close cart">
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
+    </header>
+
+    <div class="cart-drawer-body" id="cart-drawer-body">
+      <!-- menu.js renders cart items here -->
+    </div>
+
+    <footer class="cart-drawer-foot">
+      <div class="cart-total">
+        <span>Subtotal</span>
+        <b>₹0</b>
+      </div>
+      <a class="btn btn-fill btn-block" href="cart.html">Checkout</a>
+    </footer>
+  </aside>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-mark" aria-hidden="true">Madhuram</div>
+
+      <div class="footer-grid">
+        <div>
+          <strong style="color: var(--ink); font-weight: 600;">Geeta's Madhuram Cafe</strong><br />
+          <span lang="hi">गीता'स मधुरम कैफे</span><br />
+          Kaneri, Bhiwandi · <a href="tel:+919561979727">095619 79727</a>
+        </div>
+
+        <nav aria-label="Footer">
+          <a href="index.html#story">Story</a>
+          <a href="menu.html">Menu</a>
+          <a href="index.html#reviews">Reviews</a>
+          <a href="contact.html">Contact</a>
+          <a href="about.html">About</a>
+        </nav>
+      </div>
+
+      <p class="footer-copy">
+        © <span id="year">2026</span> Geeta's Madhuram Cafe. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Mobile dock -->
+  <div class="dock">
+    <a class="btn btn-ghost" href="tel:+919561979727">
+      <i class="fa-solid fa-phone" aria-hidden="true"></i> Call
+    </a>
+    <a class="btn btn-fill" href="https://www.swiggy.com/search?query=Geeta%27s%20Madhuram%20Cafe" target="_blank" rel="noopener">
+      Order on Swiggy
+    </a>
+  </div>
+
+  <!-- WhatsApp float -->
+  <a class="whatsapp-float"
+     href="https://wa.me/919561979727?text=Hi%20Geeta%27s%20Madhuram%20Cafe%2C%20I%27d%20like%20to%20know%20more"
+     target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <script src="js/api.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/navbar.js" defer></script>
+  <script src="js/restaurant.js" defer></script>
+  <script src="js/menu.js" defer></script>
+</body>
+</html>

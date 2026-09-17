@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Orders — Geeta's Madhuram Cafe</title>
+  <meta name="description" content="View your past orders from Geeta's Madhuram Cafe." />
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/menu.css" />
+  <link rel="stylesheet" href="css/reviews.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/mobile-app.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html">
+        <strong>Geeta's Madhuram Cafe</strong>
+        <small>Kaneri · Bhiwandi</small>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="index.html#reviews">Reviews</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="nav-cart-btn" href="cart.html" aria-label="Cart, 0 items">
+          <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+          <span class="cart-badge">0</span>
+        </a>
+        <a class="nav-login is-active" href="customer-login.html">Account</a>
+        <a class="btn btn-fill btn-sm nav-call" href="tel:+919561979727">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> Call Now
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Open menu"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap section">
+      <header class="section-head reveal">
+        <p class="eyebrow">Hi there</p>
+        <h2 class="display-lg" style="margin-top: 8px;">Your Orders</h2>
+        <p>Every order you've placed with us, newest first.</p>
+      </header>
+
+      <!-- Order list -->
+      <div class="orders-list">
+
+        <!-- ORDER 1 — Placed -->
+        <article class="order-card reveal">
+          <header class="order-head">
+            <div class="order-head-left">
+              <b class="order-number">GMC-LX8K-412</b>
+              <small class="order-date">12 Jan 2026 · 8:42 PM</small>
+            </div>
+            <span class="status-badge status-placed">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i> Placed
+            </span>
+          </header>
+
+          <ul class="order-items">
+            <li>
+              <span class="order-item-name">Plain Dosa</span>
+              <span class="order-item-qty">× 1</span>
+              <span class="order-item-price">₹90</span>
+            </li>
+            <li>
+              <span class="order-item-name">Mirchi Bajji</span>
+              <span class="order-item-qty">× 2</span>
+              <span class="order-item-price">₹45</span>
+            </li>
+          </ul>
+
+          <footer class="order-foot">
+            <div class="order-total">
+              <span>Total</span>
+              <b>₹120</b>
+            </div>
+            <div class="order-actions">
+              <span class="order-type-pill"><i class="fa-solid fa-motorcycle" aria-hidden="true"></i> Delivery</span>
+              <button type="button" class="btn btn-ghost btn-sm">
+                View details
+              </button>
+            </div>
+          </footer>
+        </article>
+
+        <!-- ORDER 2 — Preparing -->
+        <article class="order-card reveal">
+          <header class="order-head">
+            <div class="order-head-left">
+              <b class="order-number">GMC-KW2M-089</b>
+              <small class="order-date">10 Jan 2026 · 1:15 PM</small>
+            </div>
+            <span class="status-badge status-preparing">
+              <i class="fa-solid fa-fire" aria-hidden="true"></i> Preparing
+            </span>
+          </header>
+
+          <ul class="order-items">
+            <li>
+              <span class="order-item-name">Podi Masala Dosa</span>
+              <span class="order-item-qty">× 2</span>
+              <span class="order-item-price">₹240</span>
+            </li>
+            <li>
+              <span class="order-item-name">Plain Pesarattu</span>
+              <span class="order-item-qty">× 2</span>
+              <span class="order-item-price">₹120</span>
+            </li>
+            <li>
+              <span class="order-item-name">Poori Kurma</span>
+              <span class="order-item-qty">× 2</span>
+              <span class="order-item-price">₹45</span>
+            </li>
+          </ul>
+
+          <footer class="order-foot">
+            <div class="order-total">
+              <span>Total</span>
+              <b>₹540</b>
+            </div>
+            <div class="order-actions">
+              <span class="order-type-pill"><i class="fa-solid fa-store" aria-hidden="true"></i> Pickup</span>
+              <button type="button" class="btn btn-ghost btn-sm">
+                View details
+              </button>
+            </div>
+          </footer>
+        </article>
+
+        <!-- ORDER 3 — Delivered -->
+        <article class="order-card reveal">
+          <header class="order-head">
+            <div class="order-head-left">
+              <b class="order-number">GMC-JH4R-721</b>
+              <small class="order-date">03 Jan 2026 · 7:58 PM</small>
+            </div>
+            <span class="status-badge status-delivered">
+              <i class="fa-solid fa-circle-check" aria-hidden="true"></i> Delivered
+            </span>
+          </header>
+
+          <ul class="order-items">
+            <li>
+              <span class="order-item-name">Plain Uttapam</span>
+              <span class="order-item-qty">× 1</span>
+              <span class="order-item-price">₹60</span>
+            </li>
+            <li>
+              <span class="order-item-name">Paani Poori</span>
+              <span class="order-item-qty">× 2</span>
+              <span class="order-item-price">₹45</span>
+            </li>
+          </ul>
+
+          <footer class="order-foot">
+            <div class="order-total">
+              <span>Total</span>
+              <b>₹270</b>
+            </div>
+            <div class="order-actions">
+              <span class="order-type-pill"><i class="fa-solid fa-motorcycle" aria-hidden="true"></i> Delivery</span>
+              <button type="button" class="btn btn-ghost btn-sm">
+                Reorder
+              </button>
+            </div>
+          </footer>
+        </article>
+
+      </div>
+
+      <!-- Empty state (hidden by default; Step 6 toggles it) -->
+      <div class="orders-empty" hidden>
+        <div class="orders-empty-icon" aria-hidden="true">
+          <i class="fa-solid fa-receipt"></i>
+        </div>
+        <h3 class="display-md">No orders yet</h3>
+        <p>When you place your first order, it'll show up here.</p>
+        <a class="btn btn-fill" href="menu.html">
+          <i class="fa-solid fa-book-open" aria-hidden="true"></i> Browse the menu
+        </a>
+      </div>
+
+      <p style="margin-top: 32px;">
+        <a class="btn btn-ghost" href="menu.html">
+          <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to menu
+        </a>
+      </p>
+
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-mark" aria-hidden="true">Madhuram</div>
+
+      <div class="footer-grid">
+        <div>
+          <strong style="color: var(--ink); font-weight: 600;">Geeta's Madhuram Cafe</strong><br />
+          <span lang="hi">गीता'स मधुरम कैफे</span><br />
+          Kaneri, Bhiwandi · <a href="tel:+919561979727">095619 79727</a>
+        </div>
+
+        <nav aria-label="Footer">
+          <a href="index.html#story">Story</a>
+          <a href="menu.html">Menu</a>
+          <a href="index.html#reviews">Reviews</a>
+          <a href="contact.html">Contact</a>
+          <a href="about.html">About</a>
+        </nav>
+      </div>
+
+      <p class="footer-copy">
+        © <span id="year">2026</span> Geeta's Madhuram Cafe. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <!-- WhatsApp float -->
+  <a class="whatsapp-float"
+     href="https://wa.me/919561979727?text=Hi%20Geeta%27s%20Madhuram%20Cafe%2C%20I%27d%20like%20to%20know%20more"
+     target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <script src="js/api.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/navbar.js" defer></script>
+  <script src="js/restaurant.js" defer></script>
+  <script src="js/customerAuth.js" defer></script>
+</body>
+</html>

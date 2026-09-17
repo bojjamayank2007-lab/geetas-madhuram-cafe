@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Geeta's Madhuram Cafe — Kaneri, Bhiwandi</title>
+  <meta name="description"
+    content="Authentic South Indian delights in Kaneri, Bhiwandi. Dosa, Pesarattu, Uttapam & more. Open daily 7 AM." />
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/menu.css" />
+  <link rel="stylesheet" href="css/reviews.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/mobile-app.css" />
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html">
+        <strong>Geeta's Madhuram Cafe</strong>
+        <small>Kaneri · Bhiwandi</small>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html" class="is-active">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="index.html#reviews">Reviews</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="nav-cart-btn" href="cart.html" aria-label="Cart, 0 items">
+          <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+          <span class="cart-badge">0</span>
+        </a>
+        <a class="nav-login" href="customer-login.html">Login</a>
+        <a class="btn btn-fill btn-sm nav-call" href="tel:+919561979727">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> Call Now
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Open menu"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Kaneri · Bhiwandi · Authentic South Indian</p>
+          <h1 class="hero-title">
+            <span class="l1">Geeta's</span>
+            <span class="l2">Madhuram</span>
+            <span class="l3">Cafe</span>
+          </h1>
+          <p class="hero-hindi">गीता'स मधुरम कैफे</p>
+          <p class="hero-lead">
+            Crispy dosas, Andhra-style Pesarattu and soft Uttapams — served fresh on Agra Road, right beside Tirupati Hospital.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-fill" href="https://www.swiggy.com/search?query=Geeta%27s%20Madhuram%20Cafe"
+              target="_blank" rel="noopener">
+              <i class="fa-solid fa-fire" aria-hidden="true"></i> Order on Swiggy
+            </a>
+            <a class="btn btn-ghost" href="menu.html">View Menu</a>
+          </div>
+        </div>
+
+        <div class="hero-media">
+          <img class="hero-img-main"
+            src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=1200&q=80"
+            alt="A South Indian dosa platter served at the cafe" />
+          <img class="hero-img-small"
+            src="https://images.unsplash.com/photo-1630383249896-424e482df921?auto=format&fit=crop&w=800&q=80"
+            alt="Close-up of a South Indian snack" />
+          <div class="badge-rating" aria-label="Rated 4.6 out of 5 from 16 Google reviews">
+            <b>4.6</b>
+            <span class="stars" aria-hidden="true">★★★★★</span>
+            <small>16 Google reviews</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee strip -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Very tasty</span><span>Crispy dosas</span><span>Authentic South</span>
+        <span>Warm staff</span><span>Great service</span><span>Fresh daily</span>
+        <span>Very tasty</span><span>Crispy dosas</span><span>Authentic South</span>
+        <span>Warm staff</span><span>Great service</span><span>Fresh daily</span>
+      </div>
+    </div>
+
+    <!-- Popular Picks -->
+    <section class="wrap section" id="popular">
+      <header class="section-head">
+        <p class="eyebrow">Bestsellers</p>
+        <h2>What everyone's ordering</h2>
+        <p>The plates that keep our regulars coming back — fresh, generous and made to order.</p>
+      </header>
+
+      <div class="menu-grid">
+        <article class="dish reveal" data-category="dosa" data-price="90" data-popular="true"
+          data-id="placeholder-plain-dosa">
+          <div class="dish-row">
+            <h3>Plain Dosa</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="price">₹90</span>
+          </div>
+          <p class="dish-desc">Crisp golden dosa served with sambar &amp; chutney</p>
+          <div class="dish-tags">
+            <span class="badge-veg" title="100% Veg" aria-label="Vegetarian"></span>
+            <span class="pill">Classic</span>
+          </div>
+          <button class="btn btn-fill btn-sm dish-add" data-id="placeholder-plain-dosa"
+            aria-label="Add Plain Dosa to cart">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </article>
+
+        <article class="dish reveal" data-category="dosa" data-price="120" data-popular="true"
+          data-id="placeholder-podi-masala-dosa">
+          <div class="dish-row">
+            <h3>Podi Masala Dosa</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="price">₹120</span>
+          </div>
+          <p class="dish-desc">Podi dosa with spiced potato filling</p>
+          <div class="dish-tags">
+            <span class="badge-veg" title="100% Veg" aria-label="Vegetarian"></span>
+            <span class="pill">Podi</span><span class="pill">Masala</span>
+          </div>
+          <button class="btn btn-fill btn-sm dish-add" data-id="placeholder-podi-masala-dosa"
+            aria-label="Add Podi Masala Dosa to cart">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </article>
+
+        <article class="dish reveal" data-category="pesarattu" data-price="60" data-popular="true"
+          data-id="placeholder-plain-pesarattu">
+          <div class="dish-row">
+            <h3>Plain Pesarattu</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="price">₹60</span>
+          </div>
+          <p class="dish-desc">Andhra-style green gram dosa, served with upma</p>
+          <div class="dish-tags">
+            <span class="badge-veg" title="100% Veg" aria-label="Vegetarian"></span>
+            <span class="pill">Andhra</span>
+          </div>
+          <button class="btn btn-fill btn-sm dish-add" data-id="placeholder-plain-pesarattu"
+            aria-label="Add Plain Pesarattu to cart">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </article>
+
+        <article class="dish reveal" data-category="pesarattu" data-price="70" data-popular="true"
+          data-id="placeholder-upma-pesarattu">
+          <div class="dish-row">
+            <h3>Upma Pesarattu</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="price">₹70</span>
+          </div>
+          <p class="dish-desc">Pesarattu with a hearty upma filling</p>
+          <div class="dish-tags">
+            <span class="badge-veg" title="100% Veg" aria-label="Vegetarian"></span>
+            <span class="pill">Upma</span>
+          </div>
+          <button class="btn btn-fill btn-sm dish-add" data-id="placeholder-upma-pesarattu"
+            aria-label="Add Upma Pesarattu to cart">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </article>
+
+        <article class="dish reveal" data-category="uttapam" data-price="60" data-popular="true"
+          data-id="placeholder-plain-uttapam">
+          <div class="dish-row">
+            <h3>Plain Uttapam</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="price">₹60</span>
+          </div>
+          <p class="dish-desc">Soft, thick pancake with onions &amp; green chilli</p>
+          <div class="dish-tags">
+            <span class="badge-veg" title="100% Veg" aria-label="Vegetarian"></span>
+            <span class="pill">Classic</span>
+          </div>
+          <button class="btn btn-fill btn-sm dish-add" data-id="placeholder-plain-uttapam"
+            aria-label="Add Plain Uttapam to cart">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </article>
+
+        <article class="dish reveal" data-category="snacks" data-price="45" data-popular="true"
+          data-id="placeholder-mirchi-bajji">
+          <div class="dish-row">
+            <h3>Mirchi Bajji</h3>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="price">₹45</span>
+          </div>
+          <p class="dish-desc">Stuffed chilli fritters, hot &amp; spicy</p>
+          <div class="dish-tags">
+            <span class="badge-veg" title="100% Veg" aria-label="Vegetarian"></span>
+            <span class="pill">Spicy</span>
+          </div>
+          <button class="btn btn-fill btn-sm dish-add" data-id="placeholder-mirchi-bajji" aria-label="Add Mirchi Bajji to cart">
+            <i class="fa-solid fa-plus" aria-hidden="true"></i> Add
+          </button>
+        </article>
+      </div>
+
+      <p class="stack" style="margin-top: 2rem;">
+        <a class="btn btn-outline" href="menu.html">See full menu <i class="fa-solid fa-arrow-right"
+            aria-hidden="true"></i></a>
+      </p>
+    </section>
+
+    <!-- Story -->
+    <section class="wrap section" id="story">
+      <div class="story-layout">
+        <div class="reveal">
+          <p class="eyebrow">Our story</p>
+          <h2 class="display-md" style="margin-top: 12px;">Good food, served the simple way.</h2>
+          <p style="margin-top: 18px;">
+            Geeta's Madhuram Cafe brings the flavours of South India to Kaneri, Bhiwandi. From crispy Benne Dosas to Andhra-style Pesarattu and soft Uttapams, every plate is made fresh to order — served with sambar, chutney and a lot of love.
+          </p>
+          <p style="margin-top: 14px;">
+            We opened on Agra Road, beside Tirupati Hospital, and quickly became the neighbourhood's corner for authentic South Indian delights.
+          </p>
+          <p style="margin-top: 14px;">
+            Whether it's a quick morning dosa, an evening plate of Mirchi Bajji, or a full Poori Kurma meal — we cook it the way it's meant to be cooked. No shortcuts.
+          </p>
+        </div>
+
+        <div class="stats reveal" aria-label="Cafe highlights">
+          <div class="stat">
+            <b>4.6</b>
+            <span>Google rating</span>
+          </div>
+          <div class="stat">
+            <b>7 AM</b>
+            <span>Opens daily</span>
+          </div>
+          <div class="stat">
+            <b>16+</b>
+            <span>Happy reviews</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="reviews" id="reviews">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <p class="eyebrow">Kind words</p>
+          <h2>From our guests</h2>
+          <p>Rated 4.6 out of 5 across 16 Google reviews.</p>
+        </header>
+
+        <div class="rail-scroll reveal">
+          <figure class="quote">
+            <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+            <p>"Very very delicious food and staff behaviour very good 😊"</p>
+            <cite>Aarav S. · Google review</cite>
+          </figure>
+          <figure class="quote">
+            <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+            <p>"Very Tasty, Good Quantity and quality."</p>
+            <cite>Priya M. · Google review</cite>
+          </figure>
+          <figure class="quote">
+            <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+            <p>"Great service and a wonderful dining experience."</p>
+            <cite>Rohit K. · Google review</cite>
+          </figure>
+        </div>
+
+        <div class="rail-ctrls" aria-label="Scroll reviews">
+          <button type="button" data-rail-prev aria-label="Previous review"><i class="fa-solid fa-arrow-left"
+              aria-hidden="true"></i></button>
+          <button type="button" data-rail-next aria-label="Next review"><i class="fa-solid fa-arrow-right"
+              aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visit -->
+    <section class="wrap section" id="visit">
+      <div class="visit-layout">
+        <div class="reveal">
+          <p class="eyebrow">Come say hello</p>
+          <h2 class="display-md" style="margin-top: 12px;">Find us on Agra Road.</h2>
+
+          <div class="info-row" style="margin-top: 24px;">
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            <div>
+              <b>Address</b>
+              <p data-restaurant="address">H No 157/2, Agra Road, beside Tirupati Hospital, Kaneri, Bhiwandi, Maharashtra 421302</p>
+            </div>
+          </div>
+          <div class="info-row">
+            <i class="fa-regular fa-clock" aria-hidden="true"></i>
+            <div>
+              <b>Hours</b>
+              <p data-restaurant="hours">Open daily 7:00 AM – 10:00 PM</p>
+            </div>
+          </div>
+          <div class="info-row">
+            <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>
+            <div>
+              <b>Plus code</b>
+              <p data-restaurant="plus-code">73R5+MC Bhiwandi, Maharashtra</p>
+            </div>
+          </div>
+
+          <a class="big-phone" data-restaurant="phone-link" href="tel:+919561979727">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i> 095619 79727
+          </a>
+
+          <div class="hero-cta">
+            <a class="btn btn-fill"
+              href="https://www.google.com/maps/search/?api=1&query=Geeta%27s%20Madhuram%20Cafe%20Bhiwandi"
+              target="_blank" rel="noopener">
+              <i class="fa-solid fa-diamond-turn-right" aria-hidden="true"></i> Get directions
+            </a>
+            <a class="btn btn-ghost" href="https://wa.me/919561979727" target="_blank" rel="noopener">
+              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp us
+            </a>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <iframe class="map-frame compact" title="Geeta's Madhuram Cafe on Google Maps"
+            src="https://www.google.com/maps?q=Geeta%27s%20Madhuram%20Cafe%20Bhiwandi&output=embed" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-mark" aria-hidden="true">Madhuram</div>
+
+      <div class="footer-grid">
+        <div>
+          <strong style="color: var(--ink); font-weight: 600;">Geeta's Madhuram Cafe</strong><br />
+          <span lang="hi">गीता'स मधुरम कैफे</span><br />
+          <span data-restaurant="address">Kaneri, Bhiwandi</span> · <a data-restaurant="phone-link" href="tel:+919561979727">095619 79727</a><br />
+          <span data-restaurant="hours">Open daily 7:00 AM – 10:00 PM</span>
+        </div>
+
+        <nav aria-label="Footer">
+          <a href="index.html#story">Story</a>
+          <a href="menu.html">Menu</a>
+          <a href="index.html#reviews">Reviews</a>
+          <a href="contact.html">Contact</a>
+          <a href="about.html">About</a>
+        </nav>
+      </div>
+
+      <p class="footer-copy">
+        © <span id="year">2026</span> Geeta's Madhuram Cafe. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Mobile dock -->
+  <div class="dock">
+    <a class="btn btn-ghost" href="tel:+919561979727">
+      <i class="fa-solid fa-phone" aria-hidden="true"></i> Call
+    </a>
+    <a class="btn btn-fill" href="https://www.swiggy.com/search?query=Geeta%27s%20Madhuram%20Cafe" target="_blank"
+      rel="noopener">
+      Order on Swiggy
+    </a>
+  </div>
+
+  <!-- WhatsApp float -->
+  <a class="whatsapp-float"
+    href="https://wa.me/919561979727?text=Hi%20Geeta%27s%20Madhuram%20Cafe%2C%20I%27d%20like%20to%20know%20more"
+    target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <script src="js/api.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/navbar.js" defer></script>
+  <script src="js/restaurant.js" defer></script>
+  <script src="js/menu.js" defer></script>
+  <script src="js/reviews.js" defer></script>
+</body>
+
+</html>

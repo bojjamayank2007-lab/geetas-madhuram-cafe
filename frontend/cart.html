@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Cart — Geeta's Madhuram Cafe</title>
+  <meta name="description" content="Review your South Indian order and checkout — Geeta's Madhuram Cafe, Kaneri, Bhiwandi." />
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/menu.css" />
+  <link rel="stylesheet" href="css/reviews.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/mobile-app.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html">
+        <strong>Geeta's Madhuram Cafe</strong>
+        <small>Kaneri · Bhiwandi</small>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="index.html#reviews">Reviews</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="nav-cart-btn" href="cart.html" aria-label="Cart, 4 items">
+          <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+          <span class="cart-badge">4</span>
+        </a>
+        <a class="nav-login" href="customer-login.html">Login</a>
+        <a class="btn btn-fill btn-sm nav-call" href="tel:+919561979727">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> Call Now
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Open menu"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap section">
+      <header class="section-head reveal">
+        <p class="eyebrow">Almost there</p>
+        <h2 class="display-lg" style="margin-top: 8px;">Your Cart</h2>
+        <p>Review your order, pick a delivery type, and place it in seconds.</p>
+      </header>
+
+      <div class="cart-layout">
+
+        <!-- LEFT: items + options -->
+        <div class="cart-main">
+
+          <!-- Cart items -->
+          <div class="cart-page-items reveal">
+
+            <article class="cart-item">
+              <div class="cart-item-thumb" aria-hidden="true">
+                <i class="fa-solid fa-bowl-food"></i>
+              </div>
+              <div class="cart-item-info">
+                <b>Plain Dosa</b>
+                <small>Crisp golden dosa served with sambar &amp; chutney</small>
+                <span class="cart-item-price">₹90</span>
+              </div>
+              <div class="qty" role="group" aria-label="Quantity for Plain Dosa">
+                <button type="button" aria-label="Decrease">−</button>
+                <span>1</span>
+                <button type="button" aria-label="Increase">+</button>
+              </div>
+            </article>
+
+            <article class="cart-item">
+              <div class="cart-item-thumb" aria-hidden="true">
+                <i class="fa-solid fa-utensils"></i>
+              </div>
+              <div class="cart-item-info">
+                <b>Plain Pesarattu</b>
+                <small>Andhra-style green gram dosa, served with upma</small>
+                <span class="cart-item-price">₹60</span>
+              </div>
+              <div class="qty" role="group" aria-label="Quantity for Plain Pesarattu">
+                <button type="button" aria-label="Decrease">−</button>
+                <span>1</span>
+                <button type="button" aria-label="Increase">+</button>
+              </div>
+            </article>
+
+            <article class="cart-item">
+              <div class="cart-item-thumb" aria-hidden="true">
+                <i class="fa-solid fa-mug-hot"></i>
+              </div>
+              <div class="cart-item-info">
+                <b>Poori Kurma</b>
+                <small>Pooris with rich vegetable kurma</small>
+                <span class="cart-item-price">₹45 × 2</span>
+              </div>
+              <div class="qty" role="group" aria-label="Quantity for Poori Kurma">
+                <button type="button" aria-label="Decrease">−</button>
+                <span>2</span>
+                <button type="button" aria-label="Increase">+</button>
+              </div>
+            </article>
+
+            <div class="cart-clear">
+              <button type="button" class="link-btn">
+                <i class="fa-solid fa-trash-can" aria-hidden="true"></i> Clear cart
+              </button>
+            </div>
+          </div>
+
+          <!-- Order type -->
+          <div class="cart-block reveal">
+            <h3 class="cart-block-title">Order type</h3>
+            <div class="chips order-type" role="radiogroup" aria-label="Order type">
+              <button type="button" class="chip is-on" data-order-type="delivery" role="radio" aria-checked="true">Delivery</button>
+              <button type="button" class="chip" data-order-type="pickup" role="radio" aria-checked="false">Pickup</button>
+              <button type="button" class="chip" data-order-type="dinein" role="radio" aria-checked="false">Dine-in</button>
+            </div>
+          </div>
+
+          <!-- Delivery address -->
+          <div class="cart-block reveal" id="delivery-block">
+            <h3 class="cart-block-title">Delivery address</h3>
+
+            <div class="form-grid">
+              <label class="field">
+                <span>Line 1</span>
+                <input type="text" name="line1" placeholder="Flat / House no, Building" autocomplete="address-line1" />
+              </label>
+
+              <label class="field">
+                <span>Line 2 <em>(optional)</em></span>
+                <input type="text" name="line2" placeholder="Street, Area" autocomplete="address-line2" />
+              </label>
+
+              <label class="field">
+                <span>City</span>
+                <input type="text" name="city" value="Bhiwandi" autocomplete="address-level2" />
+              </label>
+
+              <label class="field">
+                <span>Pincode</span>
+                <input type="text" name="pincode" placeholder="421302" inputmode="numeric" pattern="[0-9]{6}" autocomplete="postal-code" />
+              </label>
+
+              <label class="field">
+                <span>Landmark <em>(optional)</em></span>
+                <input type="text" name="landmark" placeholder="e.g. near Tirupati Hospital" />
+              </label>
+
+            </div>
+          </div>
+
+          <div class="cart-block reveal">
+            <h3 class="cart-block-title">Contact phone</h3>
+            <label class="field">
+              <span>Phone</span>
+              <input type="tel" name="phone" required placeholder="10-digit mobile" inputmode="numeric" pattern="[6-9][0-9]{9}" autocomplete="tel" />
+            </label>
+          </div>
+
+          <!-- Payment -->
+          <div class="cart-block reveal">
+            <h3 class="cart-block-title">Payment method</h3>
+            <div class="pay-cards" role="radiogroup" aria-label="Payment method">
+
+              <label class="pay-card is-on">
+                <input type="radio" name="payment" value="cod" checked />
+                <span class="pay-card-icon"><i class="fa-solid fa-money-bill-wave" aria-hidden="true"></i></span>
+                <span class="pay-card-text">
+                  <b>Cash on Delivery</b>
+                  <small>Pay when your order arrives</small>
+                </span>
+              </label>
+
+              <label class="pay-card">
+                <input type="radio" name="payment" value="razorpay" />
+                <span class="pay-card-icon"><i class="fa-solid fa-credit-card" aria-hidden="true"></i></span>
+                <span class="pay-card-text">
+                  <b>Pay Online</b>
+                  <small>UPI, Cards, Netbanking (via Razorpay)</small>
+                </span>
+              </label>
+
+            </div>
+          </div>
+
+          <!-- Notes -->
+          <div class="cart-block reveal">
+            <h3 class="cart-block-title">Notes for the kitchen <em>(optional)</em></h3>
+            <label class="field">
+              <textarea name="notes" rows="3" placeholder="e.g. Less spicy, no onion, extra chutney…"></textarea>
+            </label>
+          </div>
+
+        </div>
+
+        <!-- RIGHT: summary -->
+        <aside class="cart-side reveal">
+          <div class="order-summary">
+            <h3 class="cart-block-title">Order summary</h3>
+
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <b>₹230</b>
+            </div>
+
+            <div class="summary-row">
+              <span>Delivery fee</span>
+              <b>₹20</b>
+            </div>
+
+            <div class="summary-row summary-total">
+              <span>Total</span>
+              <b>₹250</b>
+            </div>
+
+            <button type="button" class="btn btn-fill btn-block" id="place-order">
+              Place Order
+            </button>
+
+            <p class="summary-note">
+              <i class="fa-solid fa-lock" aria-hidden="true"></i>
+              You'll be asked to log in if you're not already.
+            </p>
+          </div>
+
+          <a class="cart-continue" href="menu.html">
+            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Continue shopping
+          </a>
+        </aside>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-mark" aria-hidden="true">Madhuram</div>
+
+      <div class="footer-grid">
+        <div>
+          <strong style="color: var(--ink); font-weight: 600;">Geeta's Madhuram Cafe</strong><br />
+          <span lang="hi">गीता'स मधुरम कैफे</span><br />
+          <span data-restaurant="address">Kaneri, Bhiwandi</span> · <a data-restaurant="phone-link" href="tel:+919561979727">095619 79727</a><br />
+          <span data-restaurant="hours">Open daily 7:00 AM – 10:00 PM</span>
+        </div>
+
+        <nav aria-label="Footer">
+          <a href="index.html#story">Story</a>
+          <a href="menu.html">Menu</a>
+          <a href="index.html#reviews">Reviews</a>
+          <a href="contact.html">Contact</a>
+          <a href="about.html">About</a>
+        </nav>
+      </div>
+
+      <p class="footer-copy">
+        © <span id="year">2026</span> Geeta's Madhuram Cafe. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <!-- WhatsApp float -->
+  <a class="whatsapp-float"
+     href="https://wa.me/919561979727?text=Hi%20Geeta%27s%20Madhuram%20Cafe%2C%20I%27d%20like%20to%20know%20more"
+     target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <script src="js/api.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/navbar.js" defer></script>
+  <script src="js/restaurant.js" defer></script>
+  <script src="js/cart.js" defer></script>
+</body>
+</html>

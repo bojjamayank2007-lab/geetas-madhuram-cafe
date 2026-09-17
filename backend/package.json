@@ -1,0 +1,38 @@
+{
+  "name": "geetas-madhuram-cafe-backend",
+  "version": "1.0.0",
+  "description": "REST API backend for Geeta's Madhuram Cafe — Express 4 + MongoDB (Mongoose 8), JWT in HttpOnly cookies.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "seed": "node seed.js",
+    "seed:admin": "node seedAdmin.js"
+  },
+  "keywords": [
+    "restaurant",
+    "cafe",
+    "express",
+    "mongodb",
+    "mongoose",
+    "mern"
+  ],
+  "author": "Geeta's Madhuram Cafe",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.6.3",
+    "nodemailer": "^6.9.14",
+    "razorpay": "^2.9.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

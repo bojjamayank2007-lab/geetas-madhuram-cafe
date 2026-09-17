@@ -1,0 +1,53 @@
+/* footer.css — site footer */
+
+footer.site-footer {
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  padding: 64px 0 40px;
+}
+
+/* Huge watermark mark behind the footer content */
+.footer-mark {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 12vw, 9rem);
+  font-weight: 600;
+  line-height: .85;
+  color: var(--ink);
+  opacity: .09;
+  user-select: none;
+  pointer-events: none;
+  margin-bottom: -0.18em; /* overlap the grid that follows */
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.footer-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 26px;
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+  font-size: .85rem;
+  color: var(--muted);
+}
+.footer-grid h3 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: var(--ink);
+}
+.footer-grid nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+}
+.footer-grid a {
+  transition: color .28s var(--ease);
+}
+.footer-grid a:hover { color: var(--maroon); }
+
+.footer-copy {
+  margin-top: 36px;
+  font-size: .78rem;
+  color: var(--muted);
+}

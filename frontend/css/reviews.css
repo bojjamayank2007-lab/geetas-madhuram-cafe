@@ -1,0 +1,72 @@
+/* reviews.css — dark editorial reviews block + horizontal snap carousel */
+
+.reviews {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 96px 0;
+}
+.reviews .section-head h2 { color: var(--cream); }
+.reviews .eyebrow { color: var(--marigold); }
+.reviews .section-head p { color: rgba(251, 246, 236, .7); }
+
+/* Horizontal snap-scrolling rail */
+.rail-scroll {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 20px;
+  padding-bottom: 14px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+.rail-scroll::-webkit-scrollbar { display: none; }
+
+.quote {
+  flex: 0 0 min(400px, 82vw);
+  scroll-snap-align: start;
+  background: rgba(255, 248, 240, .05);
+  border: 1px solid rgba(255, 248, 240, .14);
+  border-radius: var(--r-lg);
+  padding: 30px 28px;
+  display: grid;
+  align-content: start;
+  gap: 14px;
+}
+.quote .stars { color: var(--marigold); }
+.quote p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.45;
+  color: var(--cream);
+}
+.quote cite {
+  font-style: normal;
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: rgba(251, 246, 236, .7);
+}
+
+.rail-ctrls {
+  display: flex;
+  gap: 10px;
+  margin-top: 28px;
+}
+.rail-ctrls button {
+  width: 46px;
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 248, 240, .24);
+  color: var(--cream);
+  font-size: 1rem;
+  transition: background .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease);
+}
+.rail-ctrls button:hover {
+  background: var(--cream);
+  color: var(--ink);
+  border-color: var(--cream);
+}
