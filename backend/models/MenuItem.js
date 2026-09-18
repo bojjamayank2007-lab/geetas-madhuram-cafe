@@ -27,7 +27,7 @@ const menuItemSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Category is required'],
       enum: {
-        values: ['dosa', 'pesarattu', 'uttapam', 'snacks', 'poori'],
+        values: ['idli', 'dosa', 'benne_dosa', 'pesarattu', 'uttapam', 'wada', 'bonda', 'upma', 'snacks', 'poori'],
         message: '{VALUE} is not a valid category',
       },
       index: true,

@@ -87,6 +87,10 @@ const buildOrderPayload = async (req) => {
   if (subtotal <= 0) {
     throw new ApiError(400, 'Cart total must be greater than zero');
   }
+  const minOrder = Number(restaurant.minOrder || 0);
+  if (minOrder > 0 && subtotal < minOrder) {
+    throw new ApiError(400, `Minimum order is ₹${minOrder}. Please add more items.`);
+  }
 
   // Delivery fee applies to delivery orders only
   const deliveryFee = orderType === 'delivery' ? Number(restaurant.deliveryFee || 0) : 0;

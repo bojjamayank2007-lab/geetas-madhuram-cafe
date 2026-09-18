@@ -18,6 +18,9 @@ const connectDB = require('./config/db');
 const { notFound, errorHandler } = require('./middleware/errorHandler');
 
 const app = express();
+// Render/Railway/Vercel proxy sits in front of us. Trust the X-Forwarded-For
+// header so rate limiting is per real client IP, not per proxy.
+app.set('trust proxy', 1);
 
 /* ─── Global middleware ──────────────────────────────────────────────────── */
 
@@ -49,6 +52,17 @@ app.use((req, res, next) => {
 // Emit CORS headers + credentials for the (now validated) origin
 app.use(cors({ origin: true, credentials: true }));
 
+/* ─── Public health probe ────────────────────────────────────────────────── */
+app.get('/api/health', (req, res) => {
+  res.status(200).json({
+    success: true,
+    status: 'ok',
+    service: "Geeta's Madhuram Cafe API",
+    version: '2.0.0',
+    time: new Date().toISOString(),
+  });
+});
+
 /* ─── Rate limiting (security rule) ──────────────────────────────────────── */
 // General API: 300 req / 15 min. A tighter 20 req / 15 min limit is applied
 // on /api/auth and /api/admin/login inside their route files.
@@ -60,17 +74,6 @@ const generalLimiter = rateLimit({
   message: { success: false, message: 'Too many requests — please try again later.' },
 });
 app.use('/api', generalLimiter);
-
-/* ─── Public health probe ────────────────────────────────────────────────── */
-app.get('/api/health', (req, res) => {
-  res.status(200).json({
-    success: true,
-    status: 'ok',
-    service: "Geeta's Madhuram Cafe API",
-    version: '2.0.0',
-    time: new Date().toISOString(),
-  });
-});
 
 /* ─── API routes ─────────────────────────────────────────────────────────── */
 app.use('/api/auth', require('./routes/auth'));

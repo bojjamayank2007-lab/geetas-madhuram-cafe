@@ -4,8 +4,8 @@
     const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
     const state = { tab: 'stats', orders: [], orderMeta: {}, orderPage: 1, orderStatus: '', menu: [], menuCategory: 'all', pendingReviews: [], approvedReviews: [], restaurant: null, confirmResolver: null };
     const statuses = ['placed', 'confirmed', 'preparing', 'ready', 'out-for-delivery', 'delivered', 'cancelled'];
-    const categories = ['all', 'dosa', 'pesarattu', 'uttapam', 'snacks', 'poori'];
-    const categoryLabels = { all: 'All', dosa: 'Benne Dosa', pesarattu: 'Pesarattu', uttapam: 'Uttapam', snacks: 'Evening Snacks', poori: 'Poori' };
+    const categories = ['all', 'idli', 'dosa', 'benne_dosa', 'pesarattu', 'uttapam', 'upma', 'wada', 'bonda', 'poori', 'snacks'];
+    const categoryLabels = { all: 'All', idli: 'Idli', dosa: 'Dosa', benne_dosa: 'Benne Dosa', pesarattu: 'Pesarattu', uttapam: 'Uttapam', upma: 'Upma', wada: 'Medhu Wada', bonda: 'Mysore Bonda', poori: 'Poori', snacks: 'Evening Snacks' };
 
     Admin.api = {
         baseUrl: location.hostname === 'localhost' || location.hostname === '127.0.0.1' ? 'http://localhost:5001' : 'https://YOUR-PRODUCTION-BACKEND.onrender.com',

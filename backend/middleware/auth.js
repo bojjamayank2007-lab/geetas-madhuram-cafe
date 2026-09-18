@@ -14,10 +14,14 @@ const Admin = require('../models/Admin');
 
 /* ─── Cookie helpers ─────────────────────────────────────────────────────── */
 
+const isProd = process.env.NODE_ENV === 'production';
+
 const cookieOptions = {
   httpOnly: true, // JavaScript in the browser cannot read the token
-  sameSite: 'lax',
-  secure: process.env.NODE_ENV === 'production', // HTTPS only in production
+  // Cross-site frontend/backend deployments require SameSite=None + Secure.
+  // Local development stays on Lax so cookies work without HTTPS.
+  sameSite: isProd ? 'none' : 'lax',
+  secure: isProd,
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days, matches JWT_EXPIRES_IN
   path: '/',
 };

@@ -4,7 +4,7 @@
  */
 const MenuItem = require('../models/MenuItem');
 
-const CATEGORIES = ['dosa', 'pesarattu', 'uttapam', 'snacks', 'poori'];
+const CATEGORIES = ['idli', 'dosa', 'benne_dosa', 'pesarattu', 'uttapam', 'wada', 'bonda', 'upma', 'snacks', 'poori'];
 const ALLOWED_FIELDS = [
   'name',
   'description',

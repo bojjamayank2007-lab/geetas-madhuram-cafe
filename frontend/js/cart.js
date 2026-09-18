@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const address = { line: formValue('line1'), area: formValue('line2'), city: formValue('city'), pincode: formValue('pincode'), landmark: formValue('landmark') };
       if (!/^[6-9]\d{9}$/.test(phone)) return GMC.toast('Enter a valid 10-digit phone number', 'error');
       if (orderType === 'delivery' && (!address.line || !/^\d{6}$/.test(address.pincode))) return GMC.toast('Enter a valid delivery address', 'error');
-      const paymentMethod = GMC.qs('input[name="payment"]:checked')?.value || 'cod';
+      const paymentMethod = 'cod';
       await GMC.api.post('/api/orders', { items: items.map((item) => ({ menuItem: item._id, quantity: item.quantity })), orderType, customerAddress: address, phone, notes: formValue('notes'), paymentMethod });
       GMC.cart.clear();
       GMC.toast('Order placed successfully', 'success');
