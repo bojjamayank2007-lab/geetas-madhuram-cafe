@@ -16,6 +16,8 @@
             let payload = {};
             try { payload = await response.json(); } catch (error) { payload = {}; }
             if (!response.ok || payload.success === false) { const error = new Error(payload.message || payload.error?.message || payload.error || `Request failed (${response.status})`); error.status = response.status; throw error; }
+            // Preserve pagination meta for list endpoints (loadOrders, loadStats rely on it)
+            if (payload.meta) return { data: payload.data, meta: payload.meta };
             return Object.prototype.hasOwnProperty.call(payload, 'data') ? payload.data : payload;
         },
         get(path) { return this.request(path); }, post(path, body) { return this.request(path, { method: 'POST', body }); }, put(path, body) { return this.request(path, { method: 'PUT', body }); }, patch(path, body) { return this.request(path, { method: 'PATCH', body }); }, del(path) { return this.request(path, { method: 'DELETE' }); }
