@@ -121,6 +121,55 @@ header.nav {
 }
 .nav-login:hover { color: var(--maroon); }
 
+/* Profile dropdown (logged-in customer) */
+.nav-login-authed {
+  cursor: pointer;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(224,154,46,.14);
+  color: var(--maroon);
+  font-weight: 600;
+}
+.nav-login-authed::after {
+  content: '\f107';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  margin-left: 6px;
+  font-size: .7em;
+  transition: transform .2s;
+}
+.nav-login-authed[aria-expanded="true"]::after { transform: rotate(180deg); }
+.nav-profile-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 180px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-md);
+  padding: 6px;
+  z-index: 700;
+}
+.nav-profile-menu a,
+.nav-profile-menu button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: var(--r-sm);
+  font-size: .88rem;
+  color: var(--ink);
+  text-align: left;
+  transition: background .18s;
+}
+.nav-profile-menu a:hover,
+.nav-profile-menu button:hover { background: rgba(224,154,46,.15); color: var(--maroon); }
+.nav-profile-menu i { width: 16px; text-align: center; color: var(--muted); }
+.nav-profile-menu a:hover i,
+.nav-profile-menu button:hover i { color: var(--maroon); }
+
 /* Hamburger — hidden from desktop up */
 .nav-toggle {
   display: none;
@@ -155,6 +204,7 @@ header.nav {
 /* Call button is hidden on very small screens */
 @media (max-width: 640px) {
   .nav-call { display: none; }
+  .nav-profile-menu { right: -8px; min-width: 160px; }
 }
 
 /* Mobile — slide-down link panel */

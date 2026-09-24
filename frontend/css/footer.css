@@ -46,6 +46,14 @@ footer.site-footer {
 }
 .footer-grid a:hover { color: var(--maroon); }
 
+.footer-legal-links {
+  flex-basis: 100%;
+  margin-top: -10px;
+  font-size: .78rem;
+  color: var(--muted);
+}
+.footer-legal-links a:hover { color: var(--maroon); }
+
 .footer-copy {
   margin-top: 36px;
   font-size: .78rem;

@@ -127,6 +127,23 @@ p { color: var(--muted); }
 
 .stack > * + * { margin-top: 1rem; }
 
+.legal-copy {
+  max-width: 760px;
+}
+.legal-copy h2 {
+  margin-top: 30px;
+  font-size: 1.45rem;
+}
+.legal-copy h2:first-child { margin-top: 0; }
+.legal-copy p {
+  margin-top: 10px;
+  max-width: 70ch;
+}
+.legal-copy a {
+  color: var(--maroon);
+  font-weight: 600;
+}
+
 .center { text-align: center; }
 
 /* f) Buttons */

@@ -3,7 +3,7 @@
   const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
 
   GMC.api = {
-    // Change only this production URL when the backend is deployed.
+    // Update this production URL after the backend is deployed on Render.
     baseUrl: isLocal ? 'http://localhost:5001' : 'https://YOUR-PRODUCTION-BACKEND.onrender.com',
 
     async request(path, options = {}) {
