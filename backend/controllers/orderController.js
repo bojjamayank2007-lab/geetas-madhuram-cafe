@@ -5,6 +5,8 @@
  * SECURITY — prices are NEVER accepted from the client. Every item, price and
  * amount is re-read from the MenuItem collection server-side.
  */
+
+const mongoose = require('mongoose');
 const crypto = require('crypto');
 const Razorpay = require('razorpay');
 const Order = require('../models/Order');
@@ -180,7 +182,13 @@ const getMy = async (req, res, next) => {
  */
 const getOne = async (req, res, next) => {
   try {
-    const order = await Order.findById(req.params.id).populate('customer', 'name phone');
+    const { id } = req.params;
+    // Accept either a MongoDB ObjectId OR a human-readable order number (GMC-...)
+    const query = mongoose.isValidObjectId(id)
+      ? { _id: id }
+      : { orderNumber: String(id).toUpperCase() };
+
+    const order = await Order.findOne(query).populate('customer', 'name phone');
     if (!order) {
       res.status(404);
       return next(new Error('Order not found'));
