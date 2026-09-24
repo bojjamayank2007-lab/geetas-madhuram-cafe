@@ -104,4 +104,19 @@
     count() { return readCart().reduce((sum, item) => sum + Number(item.quantity || 0), 0); },
     subtotal() { return readCart().reduce((sum, item) => sum + (Number(item.price) || 0) * (Number(item.quantity) || 0), 0); }
   };
+
+  GMC.auth = {
+    _cached: null,
+    async isLoggedIn({ fresh = false } = {}) {
+      if (!fresh && GMC.auth._cached !== null) return GMC.auth._cached;
+      try {
+        await GMC.api.get('/api/auth/me');
+        GMC.auth._cached = true;
+      } catch {
+        GMC.auth._cached = false;
+      }
+      return GMC.auth._cached;
+    },
+    clearCache() { GMC.auth._cached = null; }
+  };
 })();

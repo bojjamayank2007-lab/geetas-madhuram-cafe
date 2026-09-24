@@ -59,10 +59,23 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!/^[6-9]\d{9}$/.test(phone)) return GMC.toast('Enter a valid 10-digit phone number', 'error');
       if (orderType === 'delivery' && (!address.line || !/^\d{6}$/.test(address.pincode))) return GMC.toast('Enter a valid delivery address', 'error');
       const paymentMethod = 'cod';
-      await GMC.api.post('/api/orders', { items: items.map((item) => ({ menuItem: item._id, quantity: item.quantity })), orderType, customerAddress: address, phone, notes: formValue('notes'), paymentMethod });
+      const order = await GMC.api.post('/api/orders', { items: items.map((item) => ({ menuItem: item._id, quantity: item.quantity })), orderType, customerAddress: address, phone, notes: formValue('notes'), paymentMethod });
       GMC.cart.clear();
-      GMC.toast('Order placed successfully', 'success');
-      window.setTimeout(() => { location.href = 'customer-orders.html'; }, 500);
+      const backdrop = GMC.qs('#order-success-backdrop');
+      if (backdrop && order) {
+        GMC.qs('#order-success-number').textContent = `Order #${order.orderNumber}`;
+        GMC.qs('#order-success-summary').innerHTML = `
+          <div class="row"><span>${order.items.length} item${order.items.length === 1 ? '' : 's'}</span><b>${GMC.money(order.subtotal)}</b></div>
+          ${order.deliveryFee > 0 ? `<div class="row"><span>Delivery fee</span><b>${GMC.money(order.deliveryFee)}</b></div>` : ''}
+          <div class="row total"><span>Total (COD)</span><b>${GMC.money(order.total)}</b></div>
+        `;
+        GMC.qs('#order-success-receipt').href = `receipt.html?id=${encodeURIComponent(order._id)}`;
+        backdrop.hidden = false;
+        requestAnimationFrame(() => backdrop.classList.add('is-open'));
+      } else {
+        GMC.toast('Order placed successfully', 'success');
+        window.setTimeout(() => { location.href = 'customer-orders.html'; }, 500);
+      }
     } catch (error) {
       if (error.status === 401) return (location.href = 'customer-login.html?next=cart.html');
       GMC.toast(error.message, 'error');
@@ -70,5 +83,14 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   GMC.api.get('/api/restaurant').then((data) => { restaurant = data; updateSummary(); }).catch(() => {});
+  const successBackdrop = GMC.qs('#order-success-backdrop');
+  if (successBackdrop) {
+    const closeSuccess = () => {
+      successBackdrop.classList.remove('is-open');
+      window.setTimeout(() => { window.location.href = 'customer-orders.html'; }, 300);
+    };
+    successBackdrop.addEventListener('click', (event) => { if (event.target === successBackdrop) closeSuccess(); });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && successBackdrop.classList.contains('is-open')) closeSuccess(); });
+  }
   render();
 });

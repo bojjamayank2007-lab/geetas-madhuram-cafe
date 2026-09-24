@@ -317,6 +317,31 @@
 .pay-card-label { font-weight: 600; font-size: .9rem; display: block; }
 .pay-card-sub { font-size: .75rem; color: var(--muted); }
 
+.order-success-backdrop { position: fixed; inset: 0; z-index: 900; background: rgba(42, 26, 20, .5); display: grid; place-items: center; padding: 20px; opacity: 0; pointer-events: none; transition: opacity .3s var(--ease); }
+.order-success-backdrop.is-open { opacity: 1; pointer-events: auto; }
+.order-success-modal { background: var(--paper); border-radius: var(--r-lg); padding: 40px 32px 28px; max-width: 440px; width: 100%; text-align: center; box-shadow: var(--shadow-lg); transform: translateY(14px) scale(.96); transition: transform .4s var(--ease); }
+.order-success-backdrop.is-open .order-success-modal { transform: none; }
+.order-success-icon { width: 64px; height: 64px; margin: 0 auto 20px; border-radius: 50%; background: rgba(76, 175, 80, .14); display: grid; place-items: center; color: var(--success); font-size: 2rem; }
+.order-success-modal h2 { font-size: 1.6rem; color: var(--ink); margin-bottom: 6px; }
+.order-success-number { font-size: .85rem; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 22px; }
+.order-success-summary { background: var(--cream); border: 1px solid var(--line); border-radius: var(--r-md); padding: 16px 18px; margin-bottom: 16px; text-align: left; }
+.order-success-summary .row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; font-size: .88rem; color: var(--muted); }
+.order-success-summary .row.total { padding-top: 10px; margin-top: 8px; border-top: 1px solid var(--line); color: var(--ink); font-weight: 600; font-size: 1rem; }
+.order-success-summary .row.total b { color: var(--maroon); }
+.order-success-note { font-size: .82rem; color: var(--muted); margin-bottom: 22px; }
+.order-success-note i { color: var(--marigold); margin-right: 4px; }
+.order-success-actions { display: grid; gap: 10px; }
+
+.order-timeline { margin-top: 14px; padding: 14px 0 4px; border-top: 1px dashed var(--line); }
+.order-timeline ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+.order-timeline li { display: grid; grid-template-columns: 20px 1fr; gap: 12px; align-items: flex-start; position: relative; }
+.order-timeline li:not(:last-child)::before { content: ''; position: absolute; left: 9px; top: 20px; bottom: -14px; width: 1px; background: var(--line); }
+.order-timeline .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line); margin-top: 5px; position: relative; z-index: 1; }
+.order-timeline li.is-current .dot { background: var(--marigold); box-shadow: 0 0 0 4px rgba(224,154,46,.2); }
+.order-timeline li b { display: block; font-size: .84rem; color: var(--ink); text-transform: capitalize; font-weight: 600; }
+.order-timeline li small { font-size: .72rem; color: var(--muted); }
+.order-foot .order-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
 .order-summary {
   background: var(--paper);
   border: 1px solid var(--line);
@@ -396,4 +421,55 @@
 .status-badge.delivered {
   color: #2e7d32;
   background: rgba(76, 175, 80, .16);
+/* ============================================================
+   Veg-only filter toggle
+   ============================================================ */
+.search-row { flex-wrap: wrap; }
+.veg-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-pill);
+  background: var(--paper);
+  cursor: pointer;
+  user-select: none;
+  transition: border-color .2s;
+}
+.veg-toggle:hover { border-color: var(--maroon); }
+.veg-toggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.veg-toggle-track {
+  position: relative;
+  width: 34px;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--line);
+  transition: background .2s;
+  flex-shrink: 0;
+}
+.veg-toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--paper);
+  box-shadow: 0 1px 3px rgba(0,0,0,.2);
+  transition: transform .2s;
+}
+.veg-toggle input:checked ~ .veg-toggle-track { background: var(--pista); }
+.veg-toggle input:checked ~ .veg-toggle-track .veg-toggle-thumb { transform: translateX(14px); }
+.veg-toggle-label { font-size: .82rem; color: var(--ink); font-weight: 500; }
+
+.popular-filter {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
 }

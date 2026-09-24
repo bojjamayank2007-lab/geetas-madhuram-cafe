@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
       menu.querySelector('[data-logout]').addEventListener('click', async () => {
         try { await GMC.api.post('/api/auth/logout'); } catch (error) {}
+        GMC.auth.clearCache();
         location.reload();
       });
     }

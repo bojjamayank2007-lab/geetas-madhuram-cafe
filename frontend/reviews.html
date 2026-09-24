@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reviews — Geeta's Madhuram Cafe</title>
+  <meta name="description" content="Read guest reviews and share your experience at Geeta's Madhuram Cafe, Bhiwandi." />
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/hero.css" />
+  <link rel="stylesheet" href="css/menu.css" />
+  <link rel="stylesheet" href="css/reviews.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/mobile-app.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html">
+        <strong>Geeta's Madhuram Cafe</strong>
+        <small>Kaneri · Bhiwandi</small>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="reviews.html" class="is-active">Reviews</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="nav-cart-btn" href="cart.html" aria-label="Cart, 0 items">
+          <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+          <span class="cart-badge">0</span>
+        </a>
+        <a class="nav-login" href="customer-login.html">Login</a>
+        <a class="btn btn-fill btn-sm nav-call" href="tel:+919561979727">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i> Call Now
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Open menu"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap section">
+      <header class="section-head reveal">
+        <p class="eyebrow">Guest feedback</p>
+        <h2 class="display-lg" style="margin-top: 8px;">What our guests say</h2>
+        <p>Rated 4.6 ★ across 16 Google reviews — and here's what our regulars tell us.</p>
+      </header>
+
+      <div class="reviews-page-layout">
+        <div class="reviews-page-list" id="reviews-list">
+          <div class="loading-state"><span class="spinner"></span> Loading reviews…</div>
+        </div>
+
+        <aside class="review-submit reveal">
+          <h3 class="cart-block-title">Share your experience</h3>
+          <p style="color: var(--muted); font-size: .88rem; margin-bottom: 16px;">
+            We'd love to hear from you. Reviews appear after a quick check.
+          </p>
+          <form id="review-form" novalidate>
+            <div class="form-grid">
+              <label class="field" style="grid-column: 1 / -1;">
+                <span>Your name</span>
+                <input type="text" name="name" required minlength="2" maxlength="60" placeholder="e.g. Aarav S." />
+              </label>
+
+              <label class="field" style="grid-column: 1 / -1;">
+                <span>Rating</span>
+                <div class="star-picker" role="radiogroup" aria-label="Rating">
+                  <input type="radio" name="rating" value="5" id="r5" checked /><label for="r5" aria-label="5 stars">★</label>
+                  <input type="radio" name="rating" value="4" id="r4" /><label for="r4" aria-label="4 stars">★</label>
+                  <input type="radio" name="rating" value="3" id="r3" /><label for="r3" aria-label="3 stars">★</label>
+                  <input type="radio" name="rating" value="2" id="r2" /><label for="r2" aria-label="2 stars">★</label>
+                  <input type="radio" name="rating" value="1" id="r1" /><label for="r1" aria-label="1 star">★</label>
+                </div>
+              </label>
+
+              <label class="field" style="grid-column: 1 / -1;">
+                <span>Your review</span>
+                <textarea name="message" rows="5" required minlength="3" maxlength="600" placeholder="Tell us about your meal…"></textarea>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-fill btn-block" style="margin-top: 14px;">
+              <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Submit review
+            </button>
+
+            <p class="summary-note" style="margin-top: 12px;">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              Reviews are approved before appearing publicly.
+            </p>
+          </form>
+        </aside>
+      </div>
+    </section>
+  </main>
+<!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-mark" aria-hidden="true">Madhuram</div>
+
+      <div class="footer-grid">
+        <div>
+          <strong style="color: var(--ink); font-weight: 600;">Geeta's Madhuram Cafe</strong><br />
+          <span lang="hi">गीता'स मधुरम कैफे</span><br />
+          Kaneri, Bhiwandi · <a href="tel:+919561979727">095619 79727</a>
+        </div>
+
+        <nav aria-label="Footer">
+          <a href="index.html#story">Story</a>
+          <a href="menu.html">Menu</a>
+          <a href="reviews.html">Reviews</a>
+          <a href="contact.html">Contact</a>
+          <a href="about.html">About</a>
+        </nav>
+        <p class="footer-legal-links"><a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a> · <a href="refund.html">Refund</a></p>
+      </div>
+
+      <p class="footer-copy">
+        © <span id="year">2026</span> Geeta's Madhuram Cafe. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Mobile dock -->
+  <div class="dock">
+    <a class="btn btn-ghost" href="tel:+919561979727">
+      <i class="fa-solid fa-phone" aria-hidden="true"></i> Call
+    </a>
+    <a class="btn btn-fill" href="https://www.swiggy.com/search?query=Geeta%27s%20Madhuram%20Cafe" target="_blank" rel="noopener">
+      Order on Swiggy
+    </a>
+  </div>
+
+  <!-- WhatsApp float -->
+  <a class="whatsapp-float"
+     href="https://wa.me/919561979727?text=Hi%20Geeta%27s%20Madhuram%20Cafe%2C%20I%27d%20like%20to%20know%20more"
+     target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
+  <script src="js/api.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/navbar.js" defer></script>
+  <script src="js/restaurant.js" defer></script>
+  <script src="js/reviews-page.js" defer></script>
+</body>
+</html>

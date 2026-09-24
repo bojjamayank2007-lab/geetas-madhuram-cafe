@@ -34,7 +34,7 @@
         <a href="index.html">Home</a>
         <a href="menu.html">Menu</a>
         <a href="about.html">About</a>
-        <a href="index.html#reviews">Reviews</a>
+        <a href="reviews.html">Reviews</a>
         <a href="contact.html">Contact</a>
       </nav>
 
@@ -256,7 +256,7 @@
         <nav aria-label="Footer">
           <a href="index.html#story">Story</a>
           <a href="menu.html">Menu</a>
-          <a href="index.html#reviews">Reviews</a>
+          <a href="reviews.html">Reviews</a>
           <a href="contact.html">Contact</a>
           <a href="about.html">About</a>
         </nav>
@@ -275,6 +275,21 @@
      target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
     <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
   </a>
+
+  <div class="order-success-backdrop" id="order-success-backdrop" hidden>
+    <div class="order-success-modal" role="dialog" aria-modal="true" aria-labelledby="order-success-title">
+      <div class="order-success-icon" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></div>
+      <h2 id="order-success-title">Order placed!</h2>
+      <p class="order-success-number" id="order-success-number">Order #—</p>
+      <div class="order-success-summary" id="order-success-summary"></div>
+      <p class="order-success-note"><i class="fa-regular fa-clock" aria-hidden="true"></i> Usually ready in 30–40 minutes</p>
+      <div class="order-success-actions">
+        <a class="btn btn-fill btn-block" id="order-success-receipt" href="#">View Receipt</a>
+        <a class="btn btn-ghost btn-block" href="customer-orders.html">Track Order</a>
+        <a class="btn btn-ghost btn-block" href="menu.html">Continue Shopping</a>
+      </div>
+    </div>
+  </div>
 
   <script src="js/api.js" defer></script>
   <script src="js/main.js" defer></script>

@@ -20,9 +20,18 @@
 
     const wireAddButtons = (itemsById) => {
         GMC.qsa('.dish-add').forEach((button) => {
-            button.addEventListener('click', () => {
+            button.addEventListener('click', async () => {
                 const item = itemsById.get(String(button.dataset.id));
                 if (!item) return;
+
+                const authed = await GMC.auth.isLoggedIn();
+                if (!authed) {
+                    GMC.toast('Please log in to add items to your cart', 'info');
+                    const next = encodeURIComponent(location.pathname + location.search);
+                    setTimeout(() => { location.href = `customer-login.html?next=${next}`; }, 700);
+                    return;
+                }
+
                 GMC.cart.add({ _id: item._id, name: item.name, price: item.price, image: item.image });
                 GMC.toast('Added to cart', 'success');
             });
@@ -50,7 +59,20 @@
                 render();
             }));
         };
-        const open = () => { render(); drawerElement.classList.add('open'); backdrop.hidden = false; requestAnimationFrame(() => backdrop.classList.add('open')); drawerElement.setAttribute('aria-hidden', 'false'); };
+        const open = async () => {
+            const authed = await GMC.auth.isLoggedIn();
+            if (!authed) {
+                GMC.toast('Please log in to view your cart', 'info');
+                const next = encodeURIComponent(location.pathname + location.search);
+                setTimeout(() => { location.href = `customer-login.html?next=${next}`; }, 700);
+                return;
+            }
+            render();
+            drawerElement.classList.add('open');
+            backdrop.hidden = false;
+            requestAnimationFrame(() => backdrop.classList.add('open'));
+            drawerElement.setAttribute('aria-hidden', 'false');
+        };
         const close = () => { drawerElement.classList.remove('open'); backdrop.classList.remove('open'); drawerElement.setAttribute('aria-hidden', 'true'); window.setTimeout(() => { backdrop.hidden = true; }, 350); };
         GMC.qsa('.nav-cart-btn').forEach((button) => button.addEventListener('click', (event) => { event.preventDefault(); open(); }));
         GMC.qs('#cart-close')?.addEventListener('click', close);
@@ -78,19 +100,47 @@
                 let search = '';
                 const applyFilters = () => {
                     const sort = GMC.qs('#menu-sort')?.value || 'popular';
+                    const vegOnlyChecked = GMC.qs('#menu-veg-only')?.checked || false;
                     const filtered = shownItems.filter((item) => {
                         const matchesCategory = category === 'all' || String(item.category).toLowerCase() === category;
                         const needle = search.toLowerCase();
                         const matchesSearch = !needle || `${item.name} ${item.description}`.toLowerCase().includes(needle);
-                        return matchesCategory && matchesSearch;
-                    }).sort((a, b) => sort === 'price-asc' ? a.price - b.price : sort === 'price-desc' ? b.price - a.price : Number(b.isPopular) - Number(a.isPopular) || a.sortOrder - b.sortOrder);
-                    filtered.forEach((item) => { const card = GMC.qs(`.dish[data-id="${CSS.escape(String(item._id))}"]`, grid); if (card) grid.appendChild(card); });
-                    GMC.qsa('.dish', grid).forEach((card) => { card.classList.toggle('is-hidden', !filtered.some((item) => String(item._id) === card.dataset.id)); });
+                        const matchesVeg = !vegOnlyChecked || item.isVeg === true;
+                        return matchesCategory && matchesSearch && matchesVeg;
+                    }).sort((a, b) => {
+                        if (sort === 'price-asc') return a.price - b.price;
+                        if (sort === 'price-desc') return b.price - a.price;
+                        return Number(b.isPopular) - Number(a.isPopular) || a.sortOrder - b.sortOrder;
+                    });
+
+                    filtered.forEach((item) => {
+                        const card = GMC.qs(`.dish[data-id="${CSS.escape(String(item._id))}"]`, grid);
+                        if (card) grid.appendChild(card);
+                    });
+                    GMC.qsa('.dish', grid).forEach((card) => {
+                        card.classList.toggle('is-hidden', !filtered.some((item) => String(item._id) === card.dataset.id));
+                    });
                 };
                 GMC.qsa('[data-filter]').forEach((chip) => chip.addEventListener('click', () => { category = chip.dataset.filter; GMC.qsa('[data-filter]').forEach((entry) => entry.classList.toggle('is-on', entry === chip)); applyFilters(); }));
                 let timer;
                 GMC.qs('#menu-search')?.addEventListener('input', (event) => { window.clearTimeout(timer); timer = window.setTimeout(() => { search = event.target.value; applyFilters(); }, 200); });
                 GMC.qs('#menu-sort')?.addEventListener('change', applyFilters);
+                const vegOnly = GMC.qs('#menu-veg-only');
+                if (vegOnly) {
+                    vegOnly.addEventListener('change', applyFilters);
+                }
+            } else {
+                const vegOnly = GMC.qs('#home-veg-only');
+                if (vegOnly) {
+                    vegOnly.addEventListener('change', () => {
+                        const vegOnlyChecked = vegOnly.checked;
+                        GMC.qsa('.dish', grid).forEach((card) => {
+                            const item = itemsById.get(String(card.dataset.id));
+                            const visible = !vegOnlyChecked || (item && item.isVeg);
+                            card.classList.toggle('is-hidden', !visible);
+                        });
+                    });
+                }
             }
             drawer();
         } catch (error) {
