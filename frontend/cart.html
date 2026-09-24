@@ -188,7 +188,27 @@
                 </span>
               </label>
 
+              <label class="pay-card" id="pay-online-card" hidden>
+                <input type="radio" name="payment" value="razorpay" />
+                <span class="pay-card-icon"><i class="fa-solid fa-credit-card" aria-hidden="true"></i></span>
+                <span class="pay-card-text">
+                  <b>Pay Online</b>
+                  <small>UPI, Cards, Netbanking (via Razorpay)</small>
+                </span>
+              </label>
+
+              <label class="pay-card" id="pay-counter-card" hidden>
+                <input type="radio" name="payment" value="pay_at_counter" />
+                <span class="pay-card-icon"><i class="fa-solid fa-store" aria-hidden="true"></i></span>
+                <span class="pay-card-text">
+                  <b>Pay at Counter</b>
+                  <small>Only for Dine-in orders</small>
+                </span>
+              </label>
+
             </div>
+
+            <p class="pay-note" id="pay-note" hidden></p>
           </div>
 
           <!-- Notes -->

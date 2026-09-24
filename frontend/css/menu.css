@@ -451,6 +451,19 @@
   background: var(--line);
   transition: background .2s;
   flex-shrink: 0;
+/* ============================================================
+   Payment method note
+   ============================================================ */
+.pay-note {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  font-size: .82rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
 }
 .veg-toggle-thumb {
   position: absolute;

@@ -63,7 +63,7 @@ const orderSchema = new mongoose.Schema(
     paymentMethod: {
       type: String,
       required: true,
-      enum: { values: ['cod', 'razorpay'], message: '{VALUE} is not a valid payment method' },
+      enum: { values: ['cod', 'razorpay', 'pay_at_counter'], message: '{VALUE} is not a valid payment method' },
     },
     paymentStatus: {
       type: String,

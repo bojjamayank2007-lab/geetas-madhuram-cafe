@@ -126,8 +126,8 @@ ALLOWED_ORIGINS=http://localhost:5500,http://localhost:5501
 | `JWT_SECRET` | Secret used to sign JWTs |
 | `JWT_EXPIRES_IN` | JWT lifetime, normally `7d` |
 | `ALLOWED_ORIGINS` | Comma-separated customer/admin origins |
-| `RAZORPAY_KEY_ID` | Optional Razorpay key for the separate payment flow |
-| `RAZORPAY_KEY_SECRET` | Optional Razorpay secret |
+| `RAZORPAY_KEY_ID` | Optional Razorpay key — enables "Pay Online" (test keys start with `rzp_test_`) |
+| `RAZORPAY_KEY_SECRET` | Optional Razorpay secret — keep private, never expose to the frontend |
 | `ADMIN_USERNAME` | Seeded admin username |
 | `ADMIN_PASSWORD` | Seeded admin password |
 | `SMTP_HOST` | Gmail SMTP host (`smtp.gmail.com`) — used for transactional emails |
@@ -158,6 +158,25 @@ breaks an order.
 
 If SMTP is **not** configured, the API still works — orders succeed and the
 console logs `⚠️  Email notifications: disabled (SMTP not configured)` at boot.
+
+## 💳 Payments
+
+Three payment methods are supported on the cart page:
+
+- **Cash on Delivery (COD)** — the default. Works with zero configuration for
+  Delivery and Pickup orders (Dine-in too).
+- **Pay Online (Razorpay)** — for all order types. Enable it by setting
+  `RAZORPAY_KEY_ID` + `RAZORPAY_KEY_SECRET` in `backend/.env`. Test keys start
+  with `rzp_test_`, live keys with `rzp_live_`. When the keys are missing, the
+  cart page hides the "Pay Online" option and shows a small note instead.
+- **Pay at Counter** — Dine-in orders only. No online processing; the order is
+  created with `paymentMethod: pay_at_counter`.
+
+The backend validates the payment method per order type (`pay_at_counter` is
+rejected with a 400 for Delivery/Pickup — it is only available for Dine-in) and
+re-prices every cart server-side regardless of the selected method. The public
+`GET /api/orders/config` endpoint tells the frontend whether Razorpay is
+enabled (boolean only — keys are never exposed).
 
 ## 🌱 Seeding and migrations
 

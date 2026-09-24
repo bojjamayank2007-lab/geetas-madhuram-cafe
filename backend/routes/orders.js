@@ -10,6 +10,7 @@ const {
   create,
   getMy,
   getOne,
+  config,
   razorpayCreate,
   razorpayVerify,
 } = require('../controllers/orderController');
@@ -19,6 +20,7 @@ router.post('/', protect, create);
 router.get('/my', protect, getMy);
 router.post('/razorpay/create', protect, razorpayCreate);
 router.post('/razorpay/verify', protect, razorpayVerify);
+router.get('/config', config);
 router.get('/:id', protect, getOne);
 
 module.exports = router;

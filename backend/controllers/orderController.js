@@ -57,6 +57,17 @@ const buildOrderPayload = async (req) => {
     throw new ApiError(400, 'Invalid order type. Choose delivery, pickup or dinein');
   }
 
+  // Payment method — validated per order type
+  const paymentMethod = String(body.paymentMethod || 'cod').toLowerCase();
+  const allowedPaymentMethods = orderType === 'dinein'
+    ? ['cod', 'razorpay', 'pay_at_counter']
+    : ['cod', 'razorpay'];
+  if (!allowedPaymentMethods.includes(paymentMethod)) {
+    throw new ApiError(400, paymentMethod === 'pay_at_counter'
+      ? 'Pay at Counter is only available for Dine-in orders'
+      : 'Invalid payment method for this order type');
+  }
+
   const menuIds = items.map((it) => it && it.menuItem);
   if (menuIds.some((id) => !id) || menuIds.length !== items.length) {
     throw new ApiError(400, 'Every cart item needs a valid menuItem id and quantity');
@@ -130,6 +141,7 @@ const buildOrderPayload = async (req) => {
     discount: 0,
     total,
     orderType,
+    paymentMethod,
     phone,
     customerAddress,
     notes: String(body.notes || '').trim().slice(0, 300),
@@ -149,6 +161,19 @@ const handleError = (error, res, next) => {
 };
 
 /**
+ * GET /api/orders/config
+ * Public — tells the frontend whether Razorpay is enabled. Never exposes keys.
+ */
+const config = (req, res) => {
+  res.json({
+    success: true,
+    data: {
+      razorpayEnabled: Boolean(process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET),
+    },
+  });
+};
+
+/**
  * POST /api/orders — default COD flow.
  */
 const create = async (req, res, next) => {
@@ -156,7 +181,6 @@ const create = async (req, res, next) => {
     const payload = await buildOrderPayload(req);
     const order = await Order.create({
       ...payload,
-      paymentMethod: 'cod',
       paymentStatus: 'pending',
       statusHistory: [{ status: 'placed', note: 'Order placed' }],
     });
@@ -235,6 +259,7 @@ const razorpayCreate = async (req, res, next) => {
       amount: Math.round(payload.total * 100), // paise
       currency: 'INR',
       receipt: payload.orderNumber,
+      notes: { orderNumber: payload.orderNumber },
     });
 
     const order = await Order.create({
@@ -299,6 +324,11 @@ const razorpayVerify = async (req, res, next) => {
       return next(new Error('Access denied — this order belongs to another account'));
     }
 
+    // Idempotent — if this order is already marked paid, no reprocessing needed
+    if (order.paymentStatus === 'paid') {
+      return res.json({ success: true, message: 'Payment already verified', data: order });
+    }
+
     // Server-side signature verification (Razorpay spec)
     const expected = crypto
       .createHmac('sha256', keySecret)
@@ -313,6 +343,7 @@ const razorpayVerify = async (req, res, next) => {
     order.paymentStatus = 'paid';
     order.razorpay.paymentId = paymentId;
     order.razorpay.signature = signature;
+    order.statusHistory.push({ status: order.status, note: 'Payment verified' });
     await order.save();
 
     res.json({ success: true, message: 'Payment verified', data: order });
@@ -321,5 +352,5 @@ const razorpayVerify = async (req, res, next) => {
   }
 };
 
-module.exports = { create, getMy, getOne, razorpayCreate, razorpayVerify, OrderStatus };
+module.exports = { create, getMy, getOne, config, razorpayCreate, razorpayVerify, OrderStatus };
 module.exports.ApiError = ApiError;
