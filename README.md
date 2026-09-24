@@ -130,6 +130,34 @@ ALLOWED_ORIGINS=http://localhost:5500,http://localhost:5501
 | `RAZORPAY_KEY_SECRET` | Optional Razorpay secret |
 | `ADMIN_USERNAME` | Seeded admin username |
 | `ADMIN_PASSWORD` | Seeded admin password |
+| `SMTP_HOST` | Gmail SMTP host (`smtp.gmail.com`) — used for transactional emails |
+| `SMTP_PORT` | SMTP port (`587`) |
+| `SMTP_SECURE` | `false` for STARTTLS on port 587 |
+| `SMTP_USER` | Gmail address that sends the emails (needs an App Password) |
+| `SMTP_PASS` | Gmail App Password for the sender account |
+| `NOTIFICATION_EMAIL` | Where "new order" alerts are sent (can equal `SMTP_USER`) |
+| `FRONTEND_URL` | Public frontend URL used for links inside emails |
+
+## 📧 Email notifications (transactional)
+
+Orders, new-order alerts and status updates are emailed via Nodemailer + Gmail
+SMTP. Email is **best-effort**: if SMTP is not configured or sending fails, the
+API logs the error and the order still succeeds — an email never blocks or
+breaks an order.
+
+### Testing email locally
+
+1. Fill the `SMTP_*` and `NOTIFICATION_EMAIL` keys in `backend/.env` (for Gmail,
+   enable 2FA on the sender account and create an App Password at
+   <https://myaccount.google.com/apppasswords>).
+2. Restart the backend.
+3. Check the boot log — it should say `✓ Email notifications: enabled`.
+4. Place a test order → check the inbox of `SMTP_USER` (owner new-order alert)
+   and the customer's email (order confirmation).
+5. If no email arrives, check the backend console for `✗ Email send failed:`.
+
+If SMTP is **not** configured, the API still works — orders succeed and the
+console logs `⚠️  Email notifications: disabled (SMTP not configured)` at boot.
 
 ## 🌱 Seeding and migrations
 

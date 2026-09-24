@@ -7,6 +7,7 @@ const Order = require('../models/Order');
 const Review = require('../models/Review');
 const Admin = require('../models/Admin');
 const Restaurant = require('../models/Restaurant');
+const emailService = require('../utils/emailService');
 const { signToken, setAdminCookie, clearAdminCookie } = require('../middleware/auth');
 
 const OrderStatus = Order.STATUSES;
@@ -140,6 +141,14 @@ const updateOrderStatus = async (req, res, next) => {
       note: String((req.body && req.body.note) || '').slice(0, 200),
     });
     await order.save();
+
+    // Fire-and-forget status update email
+    Order.findById(order._id).populate('customer', 'email').then((populated) => {
+      const email = populated?.customer?.email;
+      if (email) {
+        return emailService.sendStatusUpdate(populated, email, status);
+      }
+    }).catch((err) => console.error('status update email failed:', err.message));
 
     res.json({ success: true, message: `Order marked as "${status}"`, data: order });
   } catch (error) {

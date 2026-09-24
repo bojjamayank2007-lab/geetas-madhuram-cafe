@@ -12,6 +12,7 @@ const Razorpay = require('razorpay');
 const Order = require('../models/Order');
 const MenuItem = require('../models/MenuItem');
 const Restaurant = require('../models/Restaurant');
+const emailService = require('../utils/emailService');
 
 const OrderStatus = Order.STATUSES;
 
@@ -159,6 +160,16 @@ const create = async (req, res, next) => {
       paymentStatus: 'pending',
       statusHistory: [{ status: 'placed', note: 'Order placed' }],
     });
+
+    // Fire-and-forget email notifications — never block the response
+    emailService
+      .sendOrderConfirmation(order, req.customer.email)
+      .catch((err) => console.error('order confirmation email failed:', err.message));
+
+    emailService
+      .sendNewOrderAlert(order, req.customer.name)
+      .catch((err) => console.error('new order alert failed:', err.message));
+
     res.status(201).json({ success: true, message: `Order ${order.orderNumber} placed!`, data: order });
   } catch (error) {
     handleError(error, res, next);
@@ -233,6 +244,15 @@ const razorpayCreate = async (req, res, next) => {
       razorpay: { orderId: rzpOrder.id },
       statusHistory: [{ status: 'placed', note: 'Order placed (Razorpay pending)' }],
     });
+
+    // Fire-and-forget email notifications — never block the response
+    emailService
+      .sendOrderConfirmation(order, req.customer.email)
+      .catch((err) => console.error('order confirmation email failed:', err.message));
+
+    emailService
+      .sendNewOrderAlert(order, req.customer.name)
+      .catch((err) => console.error('new order alert failed:', err.message));
 
     res.status(201).json({
       success: true,

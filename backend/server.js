@@ -16,6 +16,7 @@ const mongoose = require('mongoose');
 
 const connectDB = require('./config/db');
 const { notFound, errorHandler } = require('./middleware/errorHandler');
+const emailService = require('./utils/emailService');
 
 const app = express();
 // Render/Railway/Vercel proxy sits in front of us. Trust the X-Forwarded-For
@@ -96,6 +97,9 @@ const start = async () => {
     const server = app.listen(PORT, () => {
       console.log(`✓ Geeta's Madhuram Cafe API running on http://localhost:${PORT}`);
       console.log(`✓ Health check: http://localhost:${PORT}/api/health`);
+      console.log(emailService.isConfigured()
+        ? '✓ Email notifications: enabled'
+        : '⚠️  Email notifications: disabled (SMTP not configured)');
     });
 
     /* Clean shutdown on Ctrl+C / SIGTERM */
