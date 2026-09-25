@@ -1,5 +1,16 @@
 (() => {
     const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const ORDERS_POLL_MS = 30000;
+    let ordersTimer = null;
+    let lastOrdersSignature = '';
+    let ordersRendered = false;
+    const setLiveDot = (isLive) => {
+        const dot = GMC.qs('#orders-live-dot');
+        if (!dot) return;
+        dot.classList.toggle('is-live', isLive);
+        const label = dot.querySelector('.label');
+        if (label) label.textContent = isLive ? 'Live' : 'Offline';
+    };
     const loginRedirect = () => new URLSearchParams(location.search).get('next') || 'index.html';
     const activateTab = (name) => {
         GMC.qsa('.tab').forEach((tab) => { const active = tab.dataset.tab === name; tab.classList.toggle('is-active', active); tab.setAttribute('aria-selected', String(active)); });
@@ -20,6 +31,25 @@
             const timelineHtml = history.length ? `<div class="order-timeline" hidden><ul>${history.map((entry, index) => `<li class="${index === history.length - 1 ? 'is-current' : ''}"><span class="dot" aria-hidden="true"></span><div><b>${GMC.escapeHtml(String(entry.status || '').replaceAll('-', ' '))}</b><small>${new Date(entry.at || order.createdAt).toLocaleString('en-IN', { day: '2-digit', month: 'short', hour: 'numeric', minute: '2-digit' })}${entry.note ? ` · ${GMC.escapeHtml(entry.note)}` : ''}</small></div></li>`).join('')}</ul></div>` : '';
             return `<article class="order-card reveal in"><header class="order-head"><div class="order-head-left"><b class="order-number">${GMC.escapeHtml(order.orderNumber)}</b><small class="order-date">${new Date(order.createdAt).toLocaleString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: 'numeric', minute: '2-digit' })}</small></div><span class="status-badge status-${GMC.escapeHtml(status)}"><i class="fa-solid fa-${statusIcon}" aria-hidden="true"></i> ${GMC.escapeHtml(status.replaceAll('-', ' '))}</span></header><ul class="order-items">${(order.items || []).map((item) => `<li><span class="order-item-name">${GMC.escapeHtml(item.name)}</span><span class="order-item-qty">× ${item.quantity}</span><span class="order-item-price">${GMC.money(item.price * item.quantity)}</span></li>`).join('')}</ul>${timelineHtml}<footer class="order-foot"><div class="order-total"><span>Total</span><b>${GMC.money(order.total)}</b></div><div class="order-actions"><span class="order-type-pill"><i class="fa-solid fa-${type[0]}" aria-hidden="true"></i> ${type[1]}</span>${history.length ? `<button type="button" class="btn btn-ghost btn-sm" data-toggle-timeline="${GMC.escapeHtml(order._id)}">Track order</button>` : ''}${['delivered', 'cancelled'].includes(status) ? `<button type="button" class="btn btn-fill btn-sm" data-reorder="${GMC.escapeHtml(order._id)}">Reorder</button>` : ''}<a class="btn btn-ghost btn-sm" href="receipt.html?id=${GMC.escapeHtml(order._id)}">View receipt</a></div></footer></article>`;
         }).join('');
+        // Briefly highlight badges whose status changed since the last render
+        const previous = lastOrdersSignature
+            .split('|')
+            .reduce((acc, part) => {
+                const [id, previousStatus] = part.split(':');
+                if (id && previousStatus) acc[id] = previousStatus;
+                return acc;
+            }, {});
+
+        orders.forEach((order) => {
+            const prevStatus = previous[String(order._id)];
+            if (!prevStatus || prevStatus === order.status) return;
+            const card = Array.from(GMC.qsa('.order-card')).find((element) => element.textContent.includes(order.orderNumber));
+            const badge = card?.querySelector('.status-badge');
+            if (badge) {
+                badge.classList.add('just-updated');
+                window.setTimeout(() => badge.classList.remove('just-updated'), 2200);
+            }
+        });
         GMC.qsa('[data-toggle-timeline]').forEach((button) => button.addEventListener('click', () => {
             const timeline = button.closest('.order-card')?.querySelector('.order-timeline');
             if (timeline) { timeline.hidden = !timeline.hidden; button.textContent = timeline.hidden ? 'Track order' : 'Hide timeline'; }
@@ -44,6 +74,36 @@
             GMC.toast(unavailable.length ? `${unavailable.length} item(s) no longer available — added the rest` : 'Items added to cart', unavailable.length ? 'info' : 'success');
             window.setTimeout(() => { location.href = 'cart.html'; }, 600);
         }));
+    };
+
+    const refreshOrders = async () => {
+        try {
+            const orders = await GMC.api.get('/api/orders/my');
+            const signature = orders
+                .map((order) => `${order._id}:${order.status}:${(order.statusHistory || []).length}`)
+                .join('|');
+            if (signature !== lastOrdersSignature || !ordersRendered) {
+                renderOrders(orders);
+                lastOrdersSignature = signature;
+                ordersRendered = true;
+            }
+            setLiveDot(true);
+        } catch (error) {
+            setLiveDot(false);
+            if (error.status === 401) location.href = 'customer-login.html?next=customer-orders.html';
+        }
+    };
+
+    const startPolling = () => {
+        if (ordersTimer) return;
+        ordersTimer = window.setInterval(refreshOrders, ORDERS_POLL_MS);
+    };
+
+    const stopPolling = () => {
+        if (ordersTimer) {
+            window.clearInterval(ordersTimer);
+            ordersTimer = null;
+        }
     };
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -72,12 +132,28 @@
         const isOrdersPage = !!document.querySelector('.orders-list, .orders-empty');
         if (isOrdersPage) {
             GMC.api.get('/api/auth/me')
-                .then(() => GMC.api.get('/api/orders/my'))
-                .then(renderOrders)
+                .then(() => {
+                    refreshOrders();
+                    startPolling();
+                })
                 .catch((error) => {
                     if (error.status === 401) location.href = 'customer-login.html?next=customer-orders.html';
                     else GMC.toast(error.message, 'error');
                 });
+
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    stopPolling();
+                    setLiveDot(false);
+                } else {
+                    refreshOrders();
+                    startPolling();
+                }
+            });
+
+            window.addEventListener('focus', () => {
+                if (!document.hidden) refreshOrders();
+            });
         }
     });
 })();

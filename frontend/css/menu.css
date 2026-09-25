@@ -510,3 +510,43 @@
 .dish:hover .dish-photo img {
   transform: scale(1.06);
 }
+
+/* Orders page — live indicator */
+.orders-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 6px 12px 6px 10px;
+  border-radius: var(--r-pill);
+  background: var(--cream);
+  border: 1px solid var(--line);
+  font-size: .72rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color .25s;
+}
+.orders-live .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--line);
+  transition: background .25s, box-shadow .25s;
+}
+.orders-live.is-live { color: var(--maroon); }
+.orders-live.is-live .dot {
+  background: var(--success);
+  box-shadow: 0 0 0 4px rgba(76, 175, 80, .18);
+  animation: pulse-live 2s infinite;
+}
+@keyframes pulse-live {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(76, 175, 80, .18); }
+  50% { box-shadow: 0 0 0 6px rgba(76, 175, 80, .05); }
+}
+
+.status-badge.just-updated { animation: status-flash 1.1s ease-out 2; }
+@keyframes status-flash {
+  0% { background: var(--marigold); color: white; transform: scale(1.05); }
+  100% { background: inherit; color: inherit; transform: none; }
+}
