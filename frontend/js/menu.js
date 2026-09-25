@@ -6,7 +6,9 @@
         const tags = Array.isArray(item.tags) ? item.tags : [];
         const category = String(item.category || '').toLowerCase();
         const spicy = Number(item.spicyLevel || 0);
+        const img = item.image ? GMC.escapeHtml(item.image) : '';
         return `<article class="dish reveal" data-category="${GMC.escapeHtml(category)}" data-price="${Number(item.price) || 0}" data-popular="${Boolean(item.isPopular)}" data-id="${GMC.escapeHtml(item._id)}">
+        ${img ? `<div class="dish-photo"><img src="${img}" alt="${GMC.escapeHtml(item.name)}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>` : ''}
       <div class="dish-row"><h3>${GMC.escapeHtml(item.name)}</h3><span class="leader" aria-hidden="true"></span><span class="price">${GMC.money(item.price)}</span></div>
       <p class="dish-desc">${GMC.escapeHtml(item.description)}</p>
       <div class="dish-tags">
