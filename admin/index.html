@@ -44,13 +44,26 @@
 
       <section class="panel is-visible" data-panel="stats" id="stats-panel">
         <div class="kpi-grid">
-          <article class="kpi-card"><div class="kpi-icon maroon"><i class="fa-solid fa-bag-shopping" aria-hidden="true"></i></div><span>Orders today</span><strong id="kpi-orders">0</strong><small id="kpi-total-orders">0 total orders</small></article>
-          <article class="kpi-card"><div class="kpi-icon gold"><i class="fa-solid fa-indian-rupee-sign" aria-hidden="true"></i></div><span>Revenue today</span><strong id="kpi-revenue">₹0</strong><small>Excluding cancelled orders</small></article>
-          <article class="kpi-card"><div class="kpi-icon pista"><i class="fa-solid fa-hourglass-half" aria-hidden="true"></i></div><span>Pending orders</span><strong id="kpi-pending">0</strong><small>Placed or confirmed</small></article>
-          <article class="kpi-card"><div class="kpi-icon cream"><i class="fa-solid fa-star" aria-hidden="true"></i></div><span>Average rating</span><strong id="kpi-rating">0.0 ★</strong><small>Approved guest reviews</small></article>
+          <article class="kpi-card"><div class="kpi-icon maroon"><i class="fa-solid fa-receipt" aria-hidden="true"></i></div><span>Orders today</span><strong id="kpi-orders">0</strong><small id="kpi-orders-note">&nbsp;</small></article>
+          <article class="kpi-card"><div class="kpi-icon pista"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></div><span>Completed today</span><strong id="kpi-completed">0</strong><small id="kpi-cancelled-note">&nbsp;</small></article>
+          <article class="kpi-card"><div class="kpi-icon gold"><i class="fa-solid fa-hourglass-half" aria-hidden="true"></i></div><span>Pending orders</span><strong id="kpi-pending">0</strong><small>Awaiting confirmation</small></article>
+          <article class="kpi-card"><div class="kpi-icon cream"><i class="fa-solid fa-star" aria-hidden="true"></i></div><span>Average rating</span><strong id="kpi-rating">0.0 ★</strong><small id="kpi-total-orders">&nbsp;</small></article>
+          <article class="kpi-card"><div class="kpi-icon maroon"><i class="fa-solid fa-indian-rupee-sign" aria-hidden="true"></i></div><span>Revenue today</span><strong id="kpi-revenue">₹0</strong><small id="kpi-revenue-split">&nbsp;</small></article>
+          <article class="kpi-card"><div class="kpi-icon pista"><i class="fa-solid fa-credit-card" aria-hidden="true"></i></div><span>Online revenue</span><strong id="kpi-online-revenue">₹0</strong><small>Razorpay payments</small></article>
+          <article class="kpi-card"><div class="kpi-icon gold"><i class="fa-solid fa-money-bill-wave" aria-hidden="true"></i></div><span>Cash revenue</span><strong id="kpi-cod-revenue">₹0</strong><small id="kpi-counter-note">&nbsp;</small></article>
+          <article class="kpi-card"><div class="kpi-icon cream"><i class="fa-solid fa-utensils" aria-hidden="true"></i></div><span>Menu items</span><strong id="kpi-menu-items">0</strong><small id="kpi-menu-available">&nbsp;</small></article>
         </div>
         <div class="section-heading"><div><p class="eyebrow">Latest activity</p><h2>Recent orders</h2></div><button class="button button-ghost" data-go-tab="orders">View all orders <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></div>
         <div class="table-wrap" id="recent-orders"><div class="loading-state"><span class="spinner"></span> Loading activity...</div></div>
+        <section class="section-heading" style="margin-top: 34px;">
+          <div>
+            <h2>Popular items</h2>
+            <p class="subtle">Top sellers across all orders.</p>
+          </div>
+        </section>
+        <div id="popular-items" class="table-wrap">
+          <div class="loading-state"><span class="spinner"></span> Loading…</div>
+        </div>
       </section>
 
       <section class="panel" data-panel="orders" id="orders-panel">

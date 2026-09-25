@@ -245,6 +245,7 @@ All admin endpoints require `adminProtect` and an admin/owner role.
 | GET | `/api/admin/me` | Current admin |
 | GET | `/api/admin/orders?status=&page=&limit=` | Paginated orders with `{ data, meta: { page, limit, total, pages } }` |
 | PATCH | `/api/admin/orders/:id/status` | Update status and timeline |
+| DELETE | `/api/admin/orders/:id` | Permanently delete an order (cleanup of test/erroneous data) |
 | GET | `/api/admin/menu` | All menu items, including unavailable items |
 | POST | `/api/admin/menu` | Create a menu item |
 | PUT | `/api/admin/menu/:id` | Update a menu item |
@@ -253,7 +254,8 @@ All admin endpoints require `adminProtect` and an admin/owner role.
 | PATCH | `/api/admin/reviews/:id/approve` | Approve a review |
 | DELETE | `/api/admin/reviews/:id` | Delete a review |
 | PUT | `/api/admin/restaurant` | Update restaurant settings |
-| GET | `/api/admin/stats` | `{ ordersToday, revenueToday, pendingOrders, avgRating, totalOrders }` |
+| GET | `/api/admin/stats` | `{ ordersToday, completedToday, cancelledToday, revenueToday, onlineRevenueToday, codRevenueToday, counterRevenueToday, pendingOrders, avgRating, totalOrders, totalMenuItems, availableMenuItems }` |
+| GET | `/api/admin/stats/popular-items?limit=5` | Top N menu items by total quantity sold (all-time, excluding cancelled orders) |
 
 ## 🔒 Security rules and hotfixes
 
@@ -272,8 +274,8 @@ All admin endpoints require `adminProtect` and an admin/owner role.
 
 The dashboard is a single static app at `admin/` exposed through `window.GMCAdmin`:
 
-- **Stats:** orders today, revenue today, pending orders, average rating, and recent orders.
-- **Orders:** pagination, status filters, inline status changes, cancellation, detail drawer, and status timeline.
+- **Stats:** eight KPI cards — orders today, completed today, pending orders, average rating, revenue today, online revenue, cash (COD) revenue, and menu items — plus a top-5 popular items table and recent orders.
+- **Orders:** pagination, status filters, inline status changes, cancellation, detail drawer, status timeline, and permanent deletion (trash icon, only for delivered/cancelled orders).
 - **Menu:** all 10 category filters, add/edit/delete, availability/popularity toggles, and image preview.
 - **Reviews:** pending approval queue, approve/delete actions, and approved review list.
 - **Settings:** restaurant identity, contact details, address, hours, open days, delivery fee, minimum order, ratings, and accepting-orders toggle.

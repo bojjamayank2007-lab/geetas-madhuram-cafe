@@ -17,6 +17,8 @@ const {
   deleteReview,
   updateRestaurant,
   stats,
+  popularItems,
+  deleteOrder,
 } = require('../controllers/adminController');
 const {
   adminGetAll,
@@ -35,6 +37,7 @@ router.get('/me', adminProtect, me);
 /* Orders */
 router.get('/orders', adminProtect, listOrders);
 router.patch('/orders/:id/status', adminProtect, updateOrderStatus);
+router.delete('/orders/:id', adminProtect, deleteOrder);
 
 /* Menu CRUD */
 router.get('/menu', adminProtect, adminGetAll);
@@ -50,5 +53,6 @@ router.delete('/reviews/:id', adminProtect, deleteReview);
 /* Settings + stats */
 router.put('/restaurant', adminProtect, updateRestaurant);
 router.get('/stats', adminProtect, stats);
+router.get('/stats/popular-items', adminProtect, popularItems);
 
 module.exports = router;

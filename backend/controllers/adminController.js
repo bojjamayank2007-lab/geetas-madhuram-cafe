@@ -4,6 +4,7 @@
  * restaurant settings and stats. All protected handlers require role admin/owner.
  */
 const Order = require('../models/Order');
+const MenuItem = require('../models/MenuItem');
 const Review = require('../models/Review');
 const Admin = require('../models/Admin');
 const Restaurant = require('../models/Restaurant');
@@ -238,23 +239,42 @@ const updateRestaurant = async (req, res, next) => {
 
 /**
  * GET /api/admin/stats
- * { ordersToday, revenueToday, pendingOrders, avgRating, totalOrders }
+ * { ordersToday, completedToday, cancelledToday, revenueToday, onlineRevenueToday,
+ *   codRevenueToday, counterRevenueToday, pendingOrders, avgRating, totalOrders,
+ *   totalMenuItems, availableMenuItems }
  */
 const stats = async (req, res, next) => {
   try {
     const startOfToday = new Date();
     startOfToday.setHours(0, 0, 0, 0);
 
-    const [ordersToday, revenueResult, pendingOrders, avgResult, totalOrders] = await Promise.all([
-      Order.countDocuments({ createdAt: { $gte: startOfToday } }),
+    const round = (value) => Math.round((value || 0) * 100) / 100;
+    const notCancelled = { $ne: ['$status', 'cancelled'] };
+
+    const [today, pendingOrders, avgResult, totalOrders, totalMenuItems, availableMenuItems] = await Promise.all([
+      // One aggregation computes every "today" metric in a single round trip.
       Order.aggregate([
+        { $match: { createdAt: { $gte: startOfToday } } },
         {
-          $match: {
-            createdAt: { $gte: startOfToday },
-            status: { $ne: 'cancelled' },
+          $group: {
+            _id: null,
+            ordersToday: { $sum: 1 },
+            completedToday: { $sum: { $cond: [{ $eq: ['$status', 'delivered'] }, 1, 0] } },
+            cancelledToday: { $sum: { $cond: [{ $eq: ['$status', 'cancelled'] }, 1, 0] } },
+            revenue: { $sum: { $cond: [notCancelled, '$total', 0] } },
+            online: {
+              $sum: {
+                $cond: [
+                  { $and: [{ $eq: ['$paymentMethod', 'razorpay'] }, { $eq: ['$paymentStatus', 'paid'] }, notCancelled] },
+                  '$total',
+                  0,
+                ],
+              },
+            },
+            cod: { $sum: { $cond: [{ $and: [{ $eq: ['$paymentMethod', 'cod'] }, notCancelled] }, '$total', 0] } },
+            counter: { $sum: { $cond: [{ $and: [{ $eq: ['$paymentMethod', 'pay_at_counter'] }, notCancelled] }, '$total', 0] } },
           },
         },
-        { $group: { _id: null, revenue: { $sum: '$total' } } },
       ]),
       Order.countDocuments({ status: { $in: ['placed', 'confirmed'] } }),
       Review.aggregate([
@@ -262,18 +282,75 @@ const stats = async (req, res, next) => {
         { $group: { _id: null, avg: { $avg: '$rating' } } },
       ]),
       Order.countDocuments(),
+      MenuItem.countDocuments(),
+      MenuItem.countDocuments({ isAvailable: true }),
     ]);
+
+    const row = today[0] || {};
 
     res.json({
       success: true,
       data: {
-        ordersToday,
-        revenueToday: Math.round((revenueResult[0] ? revenueResult[0].revenue : 0) * 100) / 100,
+        ordersToday: row.ordersToday || 0,
+        completedToday: row.completedToday || 0,
+        cancelledToday: row.cancelledToday || 0,
+        revenueToday: round(row.revenue),
+        onlineRevenueToday: round(row.online),
+        codRevenueToday: round(row.cod),
+        counterRevenueToday: round(row.counter),
         pendingOrders,
         avgRating: avgResult[0] ? Math.round(avgResult[0].avg * 10) / 10 : 0,
         totalOrders,
+        totalMenuItems,
+        availableMenuItems,
       },
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * GET /api/admin/stats/popular-items
+ * Top N menu items by total quantity sold (all-time), excluding cancelled orders.
+ */
+const popularItems = async (req, res, next) => {
+  try {
+    const limit = Math.min(Math.max(parseInt(req.query.limit, 10) || 5, 1), 20);
+
+    const rows = await Order.aggregate([
+      { $match: { status: { $ne: 'cancelled' } } },
+      { $unwind: '$items' },
+      {
+        $group: {
+          _id: '$items.menuItem',
+          name: { $first: '$items.name' },
+          quantitySold: { $sum: '$items.quantity' },
+          revenue: { $sum: '$items.amount' },
+        },
+      },
+      { $sort: { quantitySold: -1, revenue: -1 } },
+      { $limit: limit },
+    ]);
+
+    res.json({ success: true, data: rows });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * DELETE /api/admin/orders/:id
+ * Permanently removes an order. Intended for cleanup of test/erroneous data.
+ */
+const deleteOrder = async (req, res, next) => {
+  try {
+    const order = await Order.findByIdAndDelete(req.params.id);
+    if (!order) {
+      res.status(404);
+      return next(new Error('Order not found'));
+    }
+    res.json({ success: true, message: `Order ${order.orderNumber} deleted` });
   } catch (error) {
     next(error);
   }
@@ -290,4 +367,6 @@ module.exports = {
   deleteReview,
   updateRestaurant,
   stats,
+  popularItems,
+  deleteOrder,
 };
